@@ -17,3 +17,35 @@
 body {
   font-family: "Bricolage Grotesque", Arial, Helvetica, sans-serif;
 }
+
+@keyframes moveOut {
+  from {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0.5;
+    filter: blur(5px);
+    transform: translateY(-45%) scale(0.95);
+  }
+}
+
+@keyframes moveIn {
+  from {
+    transform: translateY(30%);
+    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+  }
+  to {
+    transform: translateY(0);
+    clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%);
+  }
+}
+
+::view-transition-old(root) {
+  animation: 1.2s var(--ease-circ) both moveOut;
+}
+
+::view-transition-new(root) {
+  animation: 1.2s var(--ease-circ) both moveIn;
+}
