@@ -1,15 +1,10 @@
-import "./globals.css";
+import "./globals.scss";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const bricolageGrotesque = Bricolage_Grotesque({
+  variable: "--font-bricolage-grotesque",
   subsets: ["latin"],
 });
 
@@ -27,7 +22,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} text-stone-900 dark:text-white bg-white dark:bg-stone-950 antialiased`}
+          className={`${bricolageGrotesque.variable} text-stone-900 dark:text-white bg-white dark:bg-stone-950 antialiased`}
         >
           {children}
         </body>
