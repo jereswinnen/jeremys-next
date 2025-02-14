@@ -87,19 +87,15 @@ export function formatProjectSlug(name: string) {
 
 export async function getProjectImage(projectName: string, imageName: string) {
   try {
-    // If the imageName already has an extension, use it as is
     if (imageName.match(/\.(jpg|jpeg|png|webp|avif)$/i)) {
       return `/images/work/${formatProjectSlug(projectName)}/${imageName}`;
     }
 
-    // Try common image extensions
     const extensions = [".webp", ".png", ".jpg", ".jpeg", ".avif"];
     for (const ext of extensions) {
       const fullPath = `/images/work/${formatProjectSlug(
         projectName
       )}/${imageName}${ext}`;
-      // Note: In browser environment, we can't check if file exists
-      // Next.js Image component will handle missing files
       return fullPath;
     }
 
