@@ -2,7 +2,7 @@ import "./globals.scss";
 import type { Metadata } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
-import LenisProvider from "./hooks/LenisProvider";
+import LenisProvider from "@/hooks/LenisProvider";
 
 const bricolageGrotesque = Bricolage_Grotesque({
   variable: "--font-bricolage-grotesque",

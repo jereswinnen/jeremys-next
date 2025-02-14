@@ -1,0 +1,46 @@
+{
+  "name": "GamePal",
+  "tagline": "Remember your gaming memories",
+  "description": "GamePal is an iPhone app designed to help gamers organize and track their game collections effortlessly. Building my own app had been a long-time goal, and in 2024, I made it a reality by learning Swift and SwiftUI. My background in UX/UI design played a key role in crafting an experience that feels intuitive and at home on iOS. From concept to launch, I focused on seamless navigation, polished interactions, and a design that enhances the joy of managing a game library.",
+  "role": "UX/UI design & Swift development",
+  "startDate": "07/24",
+  "endDate": "Now",
+  "heroArtwork": "gamepalHero.jpeg",
+  "artwork": [
+    {
+      "src": "PhoneGameCollection",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "PhoneGameDetail",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "PhoneYearInPlayStart",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "PhoneJournal",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "PhoneYearInPlayMostPlayedGames",
+      "caption": "Most played games overview",
+      "colSpan": 2
+    },
+    {
+      "src": "PhoneShareGameReview",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "PhoneHallOfFame",
+      "caption": "Main project interface",
+      "colSpan": 2
+    }
+  ]
+}
