@@ -1,0 +1,51 @@
+{
+  "name": "Immo Brown",
+  "tagline": "Tagline for Immo Brown",
+  "description": "Immo Brown, a high-end real estate agency in Belgium, needed a modern website to maintain its competitive edge. Over the course of two weeks, I designed a mobile-first, luxury aesthetic website that reflected their exclusivity. By using dark colors and minimalist iconography, I highlighted their premium property portfolio while ensuring a seamless user experience. I worked closely with the client, iterating on feedback to refine the design. Once developed, the launch received positive feedback from both new and existing clients, successfully elevating their digital presence.",
+  "role": "Web design",
+  "startDate": "03/16",
+  "endDate": "06/16",
+  "artwork": [
+    {
+      "src": "DesktopSearch",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    },
+    {
+      "src": "PhoneListMenu",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "PhoneListingDetail",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+
+    {
+      "src": "DesktopListingDetail",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    },
+    {
+      "src": "DesktopListingDetailScrolled",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    },
+    {
+      "src": "DesktopHome",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    },
+    {
+      "src": "DesktopContact",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    }
+  ]
+}

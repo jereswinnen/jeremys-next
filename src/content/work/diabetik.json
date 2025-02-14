@@ -1,0 +1,43 @@
+{
+  "name": "Diabetik",
+  "tagline": "Tagline for Diabetik",
+  "description": "Diabetik is an intuitive iPhone and iPad app designed to help people with diabetes manage their meals, medication, and overall health. I worked closely with Nial, the app’s developer, to simplify data entry with Smart Input—a feature that learned user habits to predict and autofill medication logs. After launching in 2013, we redesigned the app for iOS 7, aligning it with Apple’s new design language. The response was overwhelming: Apple featured Diabetik as one of the ‘Best Apps for Diabetics,’ and the American Diabetes Association praised its intuitive and delightful interface. As my first major App Store launch, it remains one of my most meaningful projects.",
+  "role": "Web & UX/UI design",
+  "startDate": "02/15",
+  "endDate": "01/16",
+  "artwork": [
+    {
+      "src": "PhoneTimeline",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "TabletTimeline",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 3
+    },
+    {
+      "src": "TabletJournal",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 3
+    },
+    {
+      "src": "TabletAddEntry",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    },
+    {
+      "src": "PhoneJournal",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "PhoneAddBloodReading",
+      "caption": "Main project interface",
+      "colSpan": 2
+    }
+  ]
+}

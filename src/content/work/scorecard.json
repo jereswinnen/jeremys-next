@@ -1,0 +1,59 @@
+{
+  "name": "Scorecard",
+  "tagline": "Tagline for Scorecard",
+  "description": "Scorecard is an app that makes it easy to keep score while playing board games with friends and family. The challenge was to create an interface that was both intuitive and scalable, ensuring users could track scores effortlessly on iPhone and iPad. I designed a flexible design system that adapted seamlessly across devices, refining the UI through countless iterations to keep interactions smooth and frustration-free. The end result was a polished, user-friendly app that made scorekeeping a seamless part of game night.",
+  "role": "Branding & UX/UI design",
+  "startDate": "10/17",
+  "endDate": "02/18",
+  "artwork": [
+    {
+      "src": "TabletGameSessionsDark",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    },
+    {
+      "src": "PhonePlayerDetails",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "PhoneGameSessions",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "TabletGameplay",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 3
+    },
+    {
+      "src": "PhoneGameplay",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "TabletGameSessions",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 3
+    },
+    {
+      "src": "PhoneGameplayEditScore",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "PhoneAddAGameTeam",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "TabletCreateGame",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    }
+  ]
+}

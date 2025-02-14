@@ -1,0 +1,35 @@
+{
+  "name": "Helpper",
+  "tagline": "Tagline for Helpper",
+  "description": "Helpper is a platform that connects people with disabilities to those willing to help, making everyday tasks more accessible. As Lead Product Designer, I was responsible for the UX/UI of the website, mobile app, and web dashboard. Beyond visual design, I led user testing and collaborated closely with developers to create an accessible and seamless experience. The result was a thoughtfully designed product that empowered both helpers and those in need.",
+  "role": "Branding, Web & UX/UI design",
+  "startDate": "09/19",
+  "endDate": "12/22",
+  "artwork": [
+    {
+      "src": "PhoneSearch",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "PhoneRejectPerformance",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "PhoneProfile",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "PhonePerformances",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "PhoneOverview",
+      "caption": "Main project interface",
+      "colSpan": 2
+    }
+  ]
+}

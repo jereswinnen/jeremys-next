@@ -1,0 +1,55 @@
+{
+  "name": "Realo",
+  "tagline": "Tagline for Realo",
+  "description": "Realo is a real estate listing platform designed to make property searches faster, easier, and more transparent. As the company’s first designer, I built the platform’s UX from the ground up, researching how people browse and compare properties online. The project required refining data-heavy interfaces, designing clear and informative charts, maps, and widgets, and ensuring a smooth, responsive experience. I also optimized performance by reducing load times and streamlining the codebase. After months of iteration and testing, Realo launched to widespread acclaim, praised for its speed and intuitive design.",
+  "role": "Web & UX/UI design",
+  "startDate": "01/14",
+  "endDate": "11/14",
+  "artwork": [
+    {
+      "src": "DesktopAgency",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    },
+    {
+      "src": "TabletLandscapeSearch",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    },
+    {
+      "src": "TabletPortraitSearch",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 3
+    },
+    {
+      "src": "TabletPortraitListingDetail",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 3
+    },
+    {
+      "src": "PhoneSearch",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "PhoneListingDetail",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "PhoneAgency",
+      "caption": "Main project interface",
+      "colSpan": 2
+    },
+    {
+      "src": "DesktopListingDetail",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    }
+  ]
+}

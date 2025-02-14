@@ -1,0 +1,34 @@
+{
+  "name": "Shelf",
+  "tagline": "Tagline for Shelf",
+  "description": "Shelf is an iPad app that allows users to temporarily store files—images, documents, links, and more—for quick and easy access. At Lickability, I worked on designing a UI that balanced aesthetics with functionality, exploring bold color palettes, file previews, and scalable iconography. Through multiple design phases, I refined the visual hierarchy and iconography to create a polished, intuitive experience. Despite the app not launching due to resource constraints, the project was a success. In just six weeks, I designed a full-fledged UI that supported Split Screen, Slide Over, and multiple orientations, ensuring a seamless experience for users who like to do more with their iPad.",
+  "role": "Branding & UX/UI design",
+  "startDate": "09/16",
+  "endDate": "07/17",
+  "artwork": [
+    {
+      "src": "TabletLandscapeSplitscreen",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    },
+    {
+      "src": "TabletLandscapeSlideoverMain",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    },
+    {
+      "src": "TabletLandscapeSlideover",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    },
+    {
+      "src": "TabletLandscapeQuicklookVideo",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    }
+  ]
+}
