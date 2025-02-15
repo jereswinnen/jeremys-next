@@ -1,6 +1,7 @@
 "use client";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import Button from "./Button";
+import { motion, useScroll, useTransform } from "motion/react";
 
 interface FooterProps {
   className?: string;
@@ -9,6 +10,14 @@ interface FooterProps {
 const Footer: FC<FooterProps> = ({ className = "" }) => {
   const [time, setTime] = useState<string>("");
   const [isColonVisible, setIsColonVisible] = useState(true);
+
+  const element = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: element,
+    offset: ["start end", "end start"],
+  });
+
+  const parallax = useTransform(scrollYProgress, [0, 1], [0, -150]);
 
   useEffect(() => {
     const updateTime = () => {
@@ -63,9 +72,10 @@ const Footer: FC<FooterProps> = ({ className = "" }) => {
   };
 
   return (
-    <footer
-      data-speed="1.1"
-      className={`bg-amber-100 grid grid-cols-subgrid grid-rows-[auto_1fr_auto] pt-6 h-[70vh] border-t border-stone-900 dark:border-white/20 ${className}`}
+    <motion.footer
+      ref={element}
+      style={{ y: parallax }}
+      className={`grid grid-cols-subgrid grid-rows-[auto_1fr_auto] pt-6 h-[70vh] border-t border-stone-900 dark:border-white/20 ${className}`}
     >
       <div className="col-span-full grid grid-cols-subgrid h-fit content-start">
         <article className="col-span-2 flex flex-col gap-3 text-balance">
@@ -107,7 +117,7 @@ const Footer: FC<FooterProps> = ({ className = "" }) => {
           <span className="opacity-70">&copy; JS.2025</span>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 
