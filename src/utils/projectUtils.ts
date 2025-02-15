@@ -87,19 +87,13 @@ export function formatProjectSlug(name: string) {
 
 export async function getProjectImage(projectName: string, imageName: string) {
   try {
+    // If imageName already has an extension, use it
     if (imageName.match(/\.(jpg|jpeg|png|webp|avif)$/i)) {
       return `/images/work/${formatProjectSlug(projectName)}/${imageName}`;
     }
 
-    const extensions = [".webp", ".png", ".jpg", ".jpeg", ".avif"];
-    for (const ext of extensions) {
-      const fullPath = `/images/work/${formatProjectSlug(
-        projectName
-      )}/${imageName}${ext}`;
-      return fullPath;
-    }
-
-    return `/images/work/${formatProjectSlug(projectName)}/${imageName}.webp`;
+    // Default to .png if no extension is provided
+    return `/images/work/${formatProjectSlug(projectName)}/${imageName}.png`;
   } catch (error) {
     console.error(`Error loading image for project ${projectName}:`, error);
     throw new Error(`Image for project ${projectName} not found`);
