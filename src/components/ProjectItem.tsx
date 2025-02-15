@@ -50,7 +50,7 @@ const ProjectItem: FC<ProjectItemProps> = ({ project }) => {
                 alt={item.caption || project.name}
                 width={1000}
                 height={1000}
-                className="max-h-[60vh] lg:max-h-[40vh] object-contain"
+                className="relative max-h-[60vh] lg:max-h-[40vh] object-contain"
                 loading="lazy"
               />
               {/* <img
