@@ -11,9 +11,9 @@ const Footer: FC<FooterProps> = ({ className = "" }) => {
   const [time, setTime] = useState<string>("");
   const [isColonVisible, setIsColonVisible] = useState(true);
 
-  const element = useRef(null);
+  const elementRef = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: element,
+    target: elementRef,
     offset: ["start end", "end start"],
   });
 
@@ -73,7 +73,7 @@ const Footer: FC<FooterProps> = ({ className = "" }) => {
 
   return (
     <motion.footer
-      ref={element}
+      ref={elementRef}
       style={{ y: parallax }}
       className={`grid grid-cols-subgrid grid-rows-[auto_1fr_auto] pt-6 h-[70vh] border-t border-stone-900 dark:border-white/20 ${className}`}
     >
