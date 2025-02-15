@@ -14,10 +14,6 @@
   }
 }
 
-.cta-interaction {
-  @apply ease-circ transition-all duration-[400ms];
-}
-
 body {
   font-family: "Bricolage Grotesque", Arial, Helvetica, sans-serif;
 }
@@ -52,4 +48,29 @@ body {
 
 ::view-transition-new(root) {
   animation: 1.2s var(--ease-circ) both moveIn;
+}
+
+.cta-interaction {
+  @apply ease-circ transition-all duration-[400ms];
+}
+
+.vinylMask {
+  mask-image: url("/images/vinylMask.svg");
+  -webkit-mask-image: url("/images/vinylMask.svg");
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  animation: rotateImage 7s linear infinite;
+}
+
+@keyframes rotateImage {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

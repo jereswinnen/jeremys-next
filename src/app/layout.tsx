@@ -4,6 +4,7 @@ import { Bricolage_Grotesque } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 import LenisProvider from "@/hooks/LenisProvider";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const bricolageGrotesque = Bricolage_Grotesque({
   variable: "--font-bricolage-grotesque",
@@ -29,6 +30,7 @@ export default function RootLayout({
           <LenisProvider />
           <Header />
           {children}
+          <Footer />
         </body>
       </html>
     </ViewTransitions>
