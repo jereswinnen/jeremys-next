@@ -28,7 +28,7 @@ const Button: FC<ButtonProps> = ({
   };
 
   const baseClasses = [
-    "group relative px-3 pb-1 md:px-5 md:pt-1 md:pb-2 rounded-full dark:text-white uppercase text-2xl md:text-5xl border-2 border-current",
+    "group relative px-3 py-0.5 md:px-5 md:py-2 rounded-full dark:text-white uppercase tracking-tight text-2xl md:text-5xl border-2 border-current",
     "hover:bg-stone-900 will-change-auto cta-interaction overflow-hidden hover:text-stone-900 hover:scale-95",
     className,
   ].join(" ");

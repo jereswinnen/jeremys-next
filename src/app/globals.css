@@ -51,6 +51,10 @@ body {
   animation: 1.2s var(--ease-circ) both moveIn;
 }
 
+p:not(:last-of-type) {
+  margin-bottom: 1.25rem;
+}
+
 .o-container {
   padding: 0 var(--u-container-padding);
 }
