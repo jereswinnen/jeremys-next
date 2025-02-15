@@ -2,11 +2,10 @@
 import { FC } from "react";
 import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
-import { useCopyEmail } from "@/hooks/CopyEmail";
+import { useCopyEmail } from "../hooks/CopyEmail";
 
-interface HeaderProps {
+interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
   className?: string;
-  [key: string]: any;
 }
 
 interface NavItem {

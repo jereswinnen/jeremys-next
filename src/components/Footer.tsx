@@ -1,6 +1,6 @@
 "use client";
 import { FC, useEffect, useState } from "react";
-import Button from "@/components/Button";
+import Button from "./Button";
 
 interface FooterProps {
   className?: string;

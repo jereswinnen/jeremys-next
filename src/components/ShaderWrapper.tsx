@@ -1,6 +1,5 @@
 "use client";
 import { FC } from "react";
-import ImageShader from "./shaders/ImageShader";
 import ReverseImageShader from "./shaders/ReverseImageShader";
 
 interface Source {
