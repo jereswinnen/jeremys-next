@@ -1,17 +1,18 @@
 @import "tailwindcss";
 
-@theme {
-  --ease-circ: cubic-bezier(0.645, 0, 0.045, 1);
+:root {
+  --u-grid-columns: 2;
+  --u-grid-gap: 4rem;
+  --u-container-padding: 1.4rem;
+
+  @media (min-width: 46em) {
+    --u-grid-columns: 8;
+    --u-container-padding: 2rem;
+  }
 }
 
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
+@theme {
+  --ease-circ: cubic-bezier(0.645, 0, 0.045, 1);
 }
 
 body {
@@ -48,6 +49,22 @@ body {
 
 ::view-transition-new(root) {
   animation: 1.2s var(--ease-circ) both moveIn;
+}
+
+.o-container {
+  padding: 0 var(--u-container-padding);
+}
+
+.o-grid {
+  display: grid;
+  column-gap: var(--u-grid-gap);
+  row-gap: calc(var(--u-grid-gap) * 1.25);
+  grid-template-columns: repeat(var(--u-grid-columns), 1fr);
+}
+
+.o-grid--bleed {
+  margin: 0 calc(-1 * var(--u-container-padding));
+  padding: 0 var(--u-container-padding);
 }
 
 .cta-interaction {

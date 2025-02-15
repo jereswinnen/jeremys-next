@@ -25,12 +25,14 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en">
         <body
-          className={`${bricolageGrotesque.variable} text-stone-900 dark:text-white bg-white dark:bg-stone-950 antialiased`}
+          className={`${bricolageGrotesque.variable} o-container o-grid text-stone-900 dark:text-white bg-white dark:bg-stone-950 antialiased`}
         >
           <LenisProvider />
-          <Header />
-          {children}
-          <Footer />
+          <Header className="col-span-full md:sticky md:top-0" />
+          <main className="col-span-full grid grid-cols-subgrid">
+            {children}
+          </main>
+          <Footer className="col-span-full" />
         </body>
       </html>
     </ViewTransitions>

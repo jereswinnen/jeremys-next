@@ -8,10 +8,10 @@ export default async function Home() {
   });
 
   return (
-    <main className="container mx-auto px-4">
+    <>
       {sortedProjects.map((project) => (
         <ProjectItem key={project.data.name} project={project.data} />
       ))}
-    </main>
+    </>
   );
 }
