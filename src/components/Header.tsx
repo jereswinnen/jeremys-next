@@ -43,7 +43,7 @@ const Header: FC<HeaderProps> = ({ className = "", ...rest }) => {
     >
       <Link
         href="/"
-        className="col-span-1 md:!col-span-2 pt-4 font-medium uppercase tracking-wide"
+        className="col-span-1 md:!col-span-2 pt-4 font-semibold uppercase tracking-wide"
       >
         Jeremys
       </Link>
@@ -65,7 +65,7 @@ const Header: FC<HeaderProps> = ({ className = "", ...rest }) => {
                 <Link
                   href={path}
                   className={`flex pl-3 pt-4 opacity-70 transition-all duration-500 ease-circ hover:opacity-100 ${
-                    currentPath === path ? "font-medium" : ""
+                    currentPath === path ? "font-semibold !opacity-100" : ""
                   }`}
                 >
                   <span>{label}</span>

@@ -29,7 +29,7 @@ export default function RootLayout({
         >
           <LenisProvider />
           <Header className="col-span-full md:sticky md:top-0" />
-          <main className="col-span-full grid grid-cols-subgrid">
+          <main className="col-span-full grid grid-cols-subgrid gap-y-[calc(var(--u-grid-gap)*1.25)]">
             {children}
           </main>
           <Footer className="col-span-full" />
