@@ -1,7 +1,15 @@
 import Button from "@/components/Button";
 import ShaderWrapper from "@/components/ShaderWrapper";
+import {
+  getProjectHeroImage,
+  getProjects,
+  sortProjects,
+} from "@/utils/projectUtils";
 
-export default function Info() {
+export default async function Info() {
+  const projects = await getProjects();
+  const sortedProjects = sortProjects(projects);
+
   return (
     <>
       <section
@@ -123,6 +131,58 @@ export default function Info() {
             </li>
           </ul>
         </div>
+      </section>
+      <section className="col-span-full grid grid-cols-subgrid gap-y-6 md:gap-y-0 pt-6 border-t border-stone-950 dark:border-white/20">
+        <header className="col-span-full">
+          <h3 className="font-medium">Work experience</h3>
+        </header>
+        <ul className="col-span-full grid grid-cols-subgrid !gap-y-0 text-lg">
+          {sortedProjects.map(async (project) => {
+            let heroImage;
+            if (project.data.heroArtwork) {
+              try {
+                heroImage = await getProjectHeroImage(
+                  project.data.name,
+                  project.data.heroArtwork
+                );
+              } catch (error) {
+                console.error(
+                  `Failed to load hero image for ${project.data.name}:`,
+                  error
+                );
+              }
+            }
+
+            return (
+              <li className="col-span-full grid grid-cols-subgrid pt-6 pb-5 gap-y-6 md:gap-y-0 items-end border-b last:border-0 border-stone-900/20 dark:border-white/20 transition-all ease-in-out duration-300 hover:border-stone-900/100 dark:hover:border-white">
+                <aside className="col-span-2 flex flex-col gap-5">
+                  {heroImage && (
+                    <figure className="h-0 overflow-hidden bg-stone-100 dark:bg-stone-900">
+                      <img
+                        className="object-contain"
+                        src={heroImage}
+                        alt={`${project.data.name} artwork`}
+                      />
+                    </figure>
+                  )}
+                  <div className="flex flex-col">
+                    <div className="flex gap-1 text-sm opacity-60">
+                      <span>{project.data.startDate}</span>
+                      <span className="font-[system-ui,sans-serif] !font-normal">
+                        &rarr;
+                      </span>
+                      <span>{project.data.endDate}</span>
+                    </div>
+                    <p className="text-2xl">{project.data.name}</p>
+                  </div>
+                </aside>
+                <article className="col-span-full md:!col-start-6 text-base">
+                  <p>{project.data.role}</p>
+                </article>
+              </li>
+            );
+          })}
+        </ul>
       </section>
     </>
   );
