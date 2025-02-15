@@ -59,11 +59,11 @@ const ProjectItem: FC<ProjectItemProps> = ({ project }) => {
                 src={imagePath}
                 alt={item.caption || project.name}
               /> */}
-              {item.caption && (
+              {/* {item.caption && (
                 <figcaption className="text-sm font-medium text-center opacity-60">
                   <p>{item.caption}</p>
                 </figcaption>
-              )}
+              )} */}
             </figure>
           );
         })}
