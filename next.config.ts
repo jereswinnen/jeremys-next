@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "assets.literal.club",
+        hostname: "images-na.ssl-images-amazon.com",
       },
     ],
   },
