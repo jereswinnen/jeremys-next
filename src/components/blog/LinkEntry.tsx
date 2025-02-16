@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "next-view-transitions";
-import { Link as LinkType } from "@/utils/entryTypes";
+import { Link as LinkType } from "@/lib/entryTypes";
 
 interface LinkEntryProps {
   post: LinkType;

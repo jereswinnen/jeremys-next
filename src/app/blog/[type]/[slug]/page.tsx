@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getPostBySlug } from "@/utils/mdx";
+import { getPostBySlug } from "@/lib/blog";
 import { compileMDX } from "next-mdx-remote/rsc";
 import Image from "next/image";
 import { Metadata } from "next";

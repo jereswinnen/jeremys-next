@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "next-view-transitions";
-import { Note } from "@/utils/entryTypes";
+import { Note } from "@/lib/entryTypes";
 
 interface NoteEntryProps {
   post: Note;

@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { format } from "date-fns";
-import { Post } from "@/utils/entryTypes";
+import { Post } from "@/lib/entryTypes";
 import ArticleEntry from "@/components/blog/ArticleEntry";
 import BookEntry from "@/components/blog/BookEntry";
 import LinkEntry from "@/components/blog/LinkEntry";

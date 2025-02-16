@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Image from "next/image";
-import { getProjectImage, type ProjectData } from "@/utils/projectUtils";
+import { getProjectImage, type ProjectData } from "@/lib/projectUtils";
 
 interface ProjectItemProps {
   project: ProjectData;

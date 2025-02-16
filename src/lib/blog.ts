@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { Post } from "@/utils/entryTypes";
+import { Post } from "@/lib/entryTypes";
 
 // Helper to get the correct content directory
 const getContentDirectory = () => {

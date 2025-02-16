@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Book } from "@/utils/entryTypes";
+import { Book } from "@/lib/entryTypes";
 import { Link } from "next-view-transitions";
 
 interface BookEntryProps {

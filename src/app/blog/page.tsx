@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/utils/mdx";
+import { getAllPosts } from "@/lib/blog";
 import EntryList from "@/components/blog/EntryList";
 
 export default async function Blog() {

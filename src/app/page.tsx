@@ -1,4 +1,4 @@
-import { getProjects, sortProjects } from "@/utils/projectUtils";
+import { getProjects, sortProjects } from "@/lib/projectUtils";
 import ProjectItem from "@/components/ProjectItem";
 import ShaderWrapper from "@/components/ShaderWrapper";
 

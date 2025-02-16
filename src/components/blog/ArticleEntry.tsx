@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "next-view-transitions";
-import { Article } from "@/utils/entryTypes";
+import { Article } from "@/lib/entryTypes";
 
 interface ArticleEntryProps {
   post: Article;

@@ -5,7 +5,7 @@ import {
   getProjectHeroImage,
   getProjects,
   sortProjects,
-} from "@/utils/projectUtils";
+} from "@/lib/projectUtils";
 
 export default async function Info() {
   const projects = await getProjects();
