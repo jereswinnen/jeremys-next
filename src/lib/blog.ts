@@ -10,16 +10,102 @@ const getContentDirectory = () => {
   return contentDir;
 };
 
+// Helper function to validate base frontmatter data
+const validateFrontmatter = (
+  data: any
+): data is {
+  date: string;
+  theme?: string;
+} => {
+  // Check required date field
+  if (typeof data.date !== "string") return false;
+
+  // Check optional theme field
+  if (data.theme !== undefined && typeof data.theme !== "string") return false;
+
+  return true;
+};
+
+// Specific validation for each post type with type guards
+const validateArticle = (
+  data: any
+): data is {
+  date: string;
+  theme?: string;
+  title: string;
+} => {
+  return (
+    typeof data.date === "string" &&
+    (data.theme === undefined || typeof data.theme === "string") &&
+    typeof data.title === "string"
+  );
+};
+
+const validateBook = (
+  data: any
+): data is {
+  date: string;
+  theme?: string;
+  title: string;
+  author: string;
+  cover: string;
+  rating: number;
+  url?: string;
+} => {
+  return (
+    typeof data.date === "string" &&
+    (data.theme === undefined || typeof data.theme === "string") &&
+    typeof data.title === "string" &&
+    typeof data.author === "string" &&
+    typeof data.cover === "string" &&
+    typeof data.rating === "number" &&
+    (data.url === undefined || typeof data.url === "string")
+  );
+};
+
+const validateLink = (
+  data: any
+): data is {
+  date: string;
+  theme?: string;
+  title: string;
+  url: string;
+} => {
+  return (
+    typeof data.date === "string" &&
+    (data.theme === undefined || typeof data.theme === "string") &&
+    typeof data.title === "string" &&
+    typeof data.url === "string"
+  );
+};
+
+const validateNote = (
+  data: any
+): data is {
+  date: string;
+  theme?: string;
+  title: string;
+} => {
+  return (
+    typeof data.date === "string" &&
+    (data.theme === undefined || typeof data.theme === "string") &&
+    typeof data.title === "string"
+  );
+};
+
+// Helper function to get base properties
+const getBaseProps = (
+  data: { date: string; theme?: string },
+  slug: string
+) => ({
+  slug,
+  date: data.date,
+  theme: data.theme || "default", // Provide a default theme if not specified
+});
+
 export async function getAllPosts(): Promise<Post[]> {
   const posts: Post[] = [];
   const contentDir = getContentDirectory();
-
-  // Helper function to get base properties
-  const getBaseProps = (data: any, slug: string) => ({
-    slug,
-    date: data.date,
-    theme: data.theme,
-  });
 
   // Read articles
   try {
@@ -36,6 +122,13 @@ export async function getAllPosts(): Promise<Post[]> {
       const fileContents = fs.readFileSync(fullPath, "utf8");
       const { data, content } = matter(fileContents);
       console.log("Article frontmatter:", data);
+
+      if (!validateArticle(data)) {
+        console.warn(
+          `Skipping article ${file}: missing required frontmatter properties`
+        );
+        continue;
+      }
 
       const slug = file.replace(/\.mdx?$/, "");
       const baseProps = getBaseProps(data, slug);
@@ -66,22 +159,27 @@ export async function getAllPosts(): Promise<Post[]> {
       const fileContents = fs.readFileSync(fullPath, "utf8");
       const { data, content } = matter(fileContents);
 
+      if (!validateBook(data)) {
+        console.warn(
+          `Skipping book ${file}: missing required frontmatter properties`
+        );
+        continue;
+      }
+
       const slug = file.replace(/\.mdx?$/, "");
       const baseProps = getBaseProps(data, slug);
 
-      if (data.title && data.author && data.cover && data.rating) {
-        const post: Post = {
-          ...baseProps,
-          type: "book",
-          title: data.title,
-          author: data.author,
-          cover: data.cover,
-          rating: data.rating,
-          url: data.url,
-          note: content,
-        };
-        posts.push(post);
-      }
+      const post: Post = {
+        ...baseProps,
+        type: "book",
+        title: data.title,
+        author: data.author,
+        cover: data.cover,
+        rating: data.rating,
+        url: data.url,
+        note: content,
+      };
+      posts.push(post);
     }
   } catch (error) {
     console.error("Error reading books:", error);
@@ -99,19 +197,24 @@ export async function getAllPosts(): Promise<Post[]> {
       const fileContents = fs.readFileSync(fullPath, "utf8");
       const { data, content } = matter(fileContents);
 
+      if (!validateLink(data)) {
+        console.warn(
+          `Skipping link ${file}: missing required frontmatter properties`
+        );
+        continue;
+      }
+
       const slug = file.replace(/\.mdx?$/, "");
       const baseProps = getBaseProps(data, slug);
 
-      if (data.title && data.url) {
-        const post: Post = {
-          ...baseProps,
-          type: "link",
-          title: data.title,
-          url: data.url,
-          note: content,
-        };
-        posts.push(post);
-      }
+      const post: Post = {
+        ...baseProps,
+        type: "link",
+        title: data.title,
+        url: data.url,
+        note: content,
+      };
+      posts.push(post);
     }
   } catch (error) {
     console.error("Error reading links:", error);
@@ -128,6 +231,13 @@ export async function getAllPosts(): Promise<Post[]> {
       const fullPath = path.join(notesDir, file);
       const fileContents = fs.readFileSync(fullPath, "utf8");
       const { data, content } = matter(fileContents);
+
+      if (!validateNote(data)) {
+        console.warn(
+          `Skipping note ${file}: missing required frontmatter properties`
+        );
+        continue;
+      }
 
       const slug = file.replace(/\.mdx?$/, "");
       const baseProps = getBaseProps(data, slug);

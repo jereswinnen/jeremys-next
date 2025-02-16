@@ -1,5 +1,5 @@
 "use client";
-import { motion, useAnimationControls, AnimatePresence } from "motion/react";
+import { motion, useAnimationControls } from "motion/react";
 import { useState } from "react";
 
 interface ProjectData {
@@ -19,7 +19,6 @@ interface ProjectListItemProps {
 
 const ProjectListItem = ({ project, heroImage }: ProjectListItemProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const controls = useAnimationControls();
 
   const customEase = [0.645, 0, 0.045, 1];
 
