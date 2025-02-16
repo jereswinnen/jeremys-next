@@ -42,8 +42,8 @@ const ProjectItem: FC<ProjectItemProps> = ({ project }) => {
               key={index}
               className={`flex flex-col justify-center items-center p-8 md:p-12 bg-stone-50 dark:bg-stone-900/50
                 ${item.colSpan ? `col-span-${item.colSpan}` : ""}
-                ${item.mdColSpan ? `md:col-span-${item.mdColSpan}` : ""}
-                ${item.lgColSpan ? `lg:col-span-${item.lgColSpan}` : ""}`}
+                ${item.mdColSpan ? `md:!col-span-${item.mdColSpan}` : ""}
+                ${item.lgColSpan ? `lg:!col-span-${item.lgColSpan}` : ""}`}
             >
               <Image
                 src={imagePath}
