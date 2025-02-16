@@ -205,7 +205,15 @@ export async function getPostBySlug(
   slug: string
 ): Promise<Post | null> {
   const contentDir = getContentDirectory();
-  const fullPath = path.join(contentDir, `${type}s`, `${slug}.mdx`);
+  // const fullPath = path.join(contentDir, `${type}s`, `${slug}.mdx`);
+  const extensions = [".mdx", ".md"];
+  const fullPath = extensions
+    .map((ext) => path.join(contentDir, `${type}s`, `${slug}${ext}`))
+    .find(fs.existsSync);
+
+  if (!fullPath) {
+    throw new Error(`File not found: ${slug} in ${type}s directory`);
+  }
 
   try {
     const fileContents = fs.readFileSync(fullPath, "utf8");
