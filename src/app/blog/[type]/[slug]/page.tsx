@@ -6,16 +6,15 @@ import { Metadata } from "next";
 import ThemeProvider from "@/hooks/ThemeProvider";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     type: string;
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  // Await params before destructuring
   const resolvedParams = await params;
   const { type, slug } = resolvedParams;
 
