@@ -13,8 +13,12 @@ interface PageProps {
 }
 
 export async function generateMetadata({
-  params: { type, slug },
+  params,
 }: PageProps): Promise<Metadata> {
+  // Await params before destructuring
+  const resolvedParams = await params;
+  const { type, slug } = resolvedParams;
+
   const sanitizedType = type.replace(/s$/, "");
   const post = await getPostBySlug(sanitizedType, slug);
 
@@ -30,7 +34,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function Entry({ params: { type, slug } }: PageProps) {
+export default async function Entry({ params }: PageProps) {
+  const resolvedParams = await params;
+  const { type, slug } = resolvedParams;
   const sanitizedType = type.replace(/s$/, "");
   const post = await getPostBySlug(sanitizedType, slug);
 

@@ -1,5 +1,5 @@
 "use client";
-import { motion, useAnimationControls } from "motion/react";
+import { motion } from "motion/react";
 import { useState } from "react";
 
 interface ProjectData {

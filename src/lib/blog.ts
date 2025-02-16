@@ -10,87 +10,23 @@ const getContentDirectory = () => {
   return contentDir;
 };
 
-// Helper function to validate base frontmatter data
-const validateFrontmatter = (
-  data: any
-): data is {
+// Define a type for the base frontmatter properties
+type BaseFrontmatter = {
   date: string;
   theme?: string;
-} => {
-  // Check required date field
-  if (typeof data.date !== "string") return false;
-
-  // Check optional theme field
-  if (data.theme !== undefined && typeof data.theme !== "string") return false;
-
-  return true;
-};
-
-// Specific validation for each post type with type guards
-const validateArticle = (
-  data: any
-): data is {
-  date: string;
-  theme?: string;
-  title: string;
-} => {
-  return (
-    typeof data.date === "string" &&
-    (data.theme === undefined || typeof data.theme === "string") &&
-    typeof data.title === "string"
-  );
-};
-
-const validateBook = (
-  data: any
-): data is {
-  date: string;
-  theme?: string;
-  title: string;
-  author: string;
-  cover: string;
-  rating: number;
+  title?: string;
+  author?: string;
+  cover?: string;
+  rating?: number;
   url?: string;
-} => {
-  return (
-    typeof data.date === "string" &&
-    (data.theme === undefined || typeof data.theme === "string") &&
-    typeof data.title === "string" &&
-    typeof data.author === "string" &&
-    typeof data.cover === "string" &&
-    typeof data.rating === "number" &&
-    (data.url === undefined || typeof data.url === "string")
-  );
+  [key: string]: unknown;
 };
 
-const validateLink = (
-  data: any
-): data is {
-  date: string;
-  theme?: string;
-  title: string;
-  url: string;
-} => {
-  return (
-    typeof data.date === "string" &&
-    (data.theme === undefined || typeof data.theme === "string") &&
-    typeof data.title === "string" &&
-    typeof data.url === "string"
-  );
-};
-
-const validateNote = (
-  data: any
-): data is {
-  date: string;
-  theme?: string;
-  title: string;
-} => {
-  return (
-    typeof data.date === "string" &&
-    (data.theme === undefined || typeof data.theme === "string") &&
-    typeof data.title === "string"
-  );
+// Helper to safely cast gray-matter data to BaseFrontmatter
+const castToBaseFrontmatter = (
+  data: Record<string, unknown>
+): BaseFrontmatter => {
+  return data as BaseFrontmatter;
 };
 
 // Helper function to get base properties
@@ -120,7 +56,8 @@ export async function getAllPosts(): Promise<Post[]> {
 
       const fullPath = path.join(articlesDir, file);
       const fileContents = fs.readFileSync(fullPath, "utf8");
-      const { data, content } = matter(fileContents);
+      const { data: rawData, content } = matter(fileContents);
+      const data = castToBaseFrontmatter(rawData);
       console.log("Article frontmatter:", data);
 
       if (!validateArticle(data)) {
@@ -157,7 +94,8 @@ export async function getAllPosts(): Promise<Post[]> {
 
       const fullPath = path.join(booksDir, file);
       const fileContents = fs.readFileSync(fullPath, "utf8");
-      const { data, content } = matter(fileContents);
+      const { data: rawData, content } = matter(fileContents);
+      const data = castToBaseFrontmatter(rawData);
 
       if (!validateBook(data)) {
         console.warn(
@@ -195,7 +133,8 @@ export async function getAllPosts(): Promise<Post[]> {
 
       const fullPath = path.join(linksDir, file);
       const fileContents = fs.readFileSync(fullPath, "utf8");
-      const { data, content } = matter(fileContents);
+      const { data: rawData, content } = matter(fileContents);
+      const data = castToBaseFrontmatter(rawData);
 
       if (!validateLink(data)) {
         console.warn(
@@ -230,7 +169,8 @@ export async function getAllPosts(): Promise<Post[]> {
 
       const fullPath = path.join(notesDir, file);
       const fileContents = fs.readFileSync(fullPath, "utf8");
-      const { data, content } = matter(fileContents);
+      const { data: rawData, content } = matter(fileContents);
+      const data = castToBaseFrontmatter(rawData);
 
       if (!validateNote(data)) {
         console.warn(
@@ -320,3 +260,70 @@ export async function getPostBySlug(
     return null;
   }
 }
+
+// Specific validation for each post type with type guards
+const validateArticle = (
+  data: BaseFrontmatter
+): data is BaseFrontmatter & {
+  date: string;
+  theme?: string;
+  title: string;
+} => {
+  return (
+    typeof data.date === "string" &&
+    (data.theme === undefined || typeof data.theme === "string") &&
+    typeof data.title === "string"
+  );
+};
+
+const validateBook = (
+  data: BaseFrontmatter
+): data is BaseFrontmatter & {
+  date: string;
+  theme?: string;
+  title: string;
+  author: string;
+  cover: string;
+  rating: number;
+  url?: string;
+} => {
+  return (
+    typeof data.date === "string" &&
+    (data.theme === undefined || typeof data.theme === "string") &&
+    typeof data.title === "string" &&
+    typeof data.author === "string" &&
+    typeof data.cover === "string" &&
+    typeof data.rating === "number" &&
+    (data.url === undefined || typeof data.url === "string")
+  );
+};
+
+const validateLink = (
+  data: BaseFrontmatter
+): data is BaseFrontmatter & {
+  date: string;
+  theme?: string;
+  title: string;
+  url: string;
+} => {
+  return (
+    typeof data.date === "string" &&
+    (data.theme === undefined || typeof data.theme === "string") &&
+    typeof data.title === "string" &&
+    typeof data.url === "string"
+  );
+};
+
+const validateNote = (
+  data: BaseFrontmatter
+): data is BaseFrontmatter & {
+  date: string;
+  theme?: string;
+  title: string;
+} => {
+  return (
+    typeof data.date === "string" &&
+    (data.theme === undefined || typeof data.theme === "string") &&
+    typeof data.title === "string"
+  );
+};
