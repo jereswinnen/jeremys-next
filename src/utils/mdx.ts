@@ -14,6 +14,13 @@ export async function getAllPosts(): Promise<Post[]> {
   const posts: Post[] = [];
   const contentDir = getContentDirectory();
 
+  // Helper function to get base properties
+  const getBaseProps = (data: any, slug: string) => ({
+    slug,
+    date: data.date,
+    theme: data.theme,
+  });
+
   // Read articles
   try {
     const articlesDir = path.join(contentDir, "articles");
@@ -31,12 +38,12 @@ export async function getAllPosts(): Promise<Post[]> {
       console.log("Article frontmatter:", data);
 
       const slug = file.replace(/\.mdx?$/, "");
+      const baseProps = getBaseProps(data, slug);
 
       const post: Post = {
-        slug,
+        ...baseProps,
         type: "article",
         title: data.title,
-        date: data.date,
         body: content,
       };
 
@@ -60,16 +67,16 @@ export async function getAllPosts(): Promise<Post[]> {
       const { data, content } = matter(fileContents);
 
       const slug = file.replace(/\.mdx?$/, "");
+      const baseProps = getBaseProps(data, slug);
 
       if (data.title && data.author && data.cover && data.rating) {
         const post: Post = {
-          slug,
+          ...baseProps,
           type: "book",
           title: data.title,
           author: data.author,
           cover: data.cover,
           rating: data.rating,
-          date: data.date,
           url: data.url,
           note: content,
         };
@@ -93,14 +100,14 @@ export async function getAllPosts(): Promise<Post[]> {
       const { data, content } = matter(fileContents);
 
       const slug = file.replace(/\.mdx?$/, "");
+      const baseProps = getBaseProps(data, slug);
 
       if (data.title && data.url) {
         const post: Post = {
-          slug,
+          ...baseProps,
           type: "link",
           title: data.title,
           url: data.url,
-          date: data.date,
           note: content,
         };
         posts.push(post);
@@ -123,12 +130,12 @@ export async function getAllPosts(): Promise<Post[]> {
       const { data, content } = matter(fileContents);
 
       const slug = file.replace(/\.mdx?$/, "");
+      const baseProps = getBaseProps(data, slug);
 
       const post: Post = {
-        slug,
+        ...baseProps,
         type: "note",
         title: data.title,
-        date: data.date,
         body: content,
       };
       posts.push(post);
@@ -154,42 +161,45 @@ export async function getPostBySlug(
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(fileContents);
 
+    // Base properties that all post types share
+    const baseProps = {
+      slug,
+      date: data.date,
+      theme: data.theme,
+    };
+
     switch (type) {
       case "article":
         return {
-          slug,
+          ...baseProps,
           type: "article",
           title: data.title,
-          date: data.date,
           body: content,
         };
       case "book":
         return {
-          slug,
+          ...baseProps,
           type: "book",
           title: data.title,
           author: data.author,
           cover: data.cover,
           rating: data.rating,
-          date: data.date,
           url: data.url,
           note: content,
         };
       case "link":
         return {
-          slug,
+          ...baseProps,
           type: "link",
           title: data.title,
           url: data.url,
-          date: data.date,
           note: content,
         };
       case "note":
         return {
-          slug,
+          ...baseProps,
           type: "note",
           title: data.title,
-          date: data.date,
           body: content,
         };
       default:

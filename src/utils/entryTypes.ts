@@ -2,6 +2,7 @@ export type BasePost = {
   slug: string;
   date: string;
   type: "article" | "book" | "link" | "note";
+  theme?: string;
 };
 
 export interface Article extends BasePost {

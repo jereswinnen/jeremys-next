@@ -13,6 +13,10 @@
 
 @theme {
   --ease-circ: cubic-bezier(0.645, 0, 0.045, 1);
+  --color-forest-light: #6ee26b;
+  --color-forest-dark: #1a5619;
+  --color-ocean-light: #46ccd5;
+  --color-ocean-dark: #09465a;
 }
 
 body {
@@ -73,6 +77,14 @@ p:not(:last-of-type) {
 
 .cta-interaction {
   @apply ease-circ transition-all duration-[400ms];
+}
+
+.t-forest {
+  @apply bg-forest-light text-forest-dark;
+}
+
+.t-ocean {
+  @apply bg-ocean-light text-ocean-dark;
 }
 
 .vinylMask {
