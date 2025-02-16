@@ -6,9 +6,21 @@ export default async function Blog() {
   console.log("Rendered posts:", posts);
 
   return (
-    <div className="max-w-4xl mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-8">Blog</h1>
-      {posts.length === 0 ? <p>No posts found</p> : <EntryList posts={posts} />}
-    </div>
+    <>
+      <section className="col-span-full grid grid-cols-subgrid !gap-y-6 md:!gap-y-12 min-h-[15vh] content-end">
+        <header className="col-span-full md:!col-span-7">
+          <h2 className="text-[clamp(40px,6vw,100px)] -tracking-[0.045em] leading-[1.12em] text-balance">
+            Blog
+          </h2>
+        </header>
+      </section>
+      <section className="col-span-full grid grid-cols-subgrid gap-y-6 md:gap-y-0 pt-6 border-t border-stone-950 dark:border-white/20">
+        {posts.length === 0 ? (
+          <p>No posts found</p>
+        ) : (
+          <EntryList posts={posts} />
+        )}
+      </section>
+    </>
   );
 }

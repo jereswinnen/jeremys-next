@@ -1,4 +1,3 @@
-// src/app/blog/[type]/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import { getPostBySlug } from "@/utils/mdx";
 import { compileMDX } from "next-mdx-remote/rsc";
@@ -39,7 +38,6 @@ export default async function Entry({ params: { type, slug } }: PageProps) {
     notFound();
   }
 
-  // Compile MDX content
   let content;
   if ("body" in post) {
     const { content: compiledContent } = await compileMDX({
@@ -56,7 +54,7 @@ export default async function Entry({ params: { type, slug } }: PageProps) {
     note = compiledNote;
   }
 
-  console.log("Post theme:", post.theme); // Debug log
+  console.log("Post theme:", post.theme);
 
   return (
     <ThemeProvider theme={post.theme}>
