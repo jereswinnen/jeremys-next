@@ -8,24 +8,24 @@ const SiteReveal = () => {
   const [showOverlay, setShowOverlay] = useState(true);
 
   const timeline = {
-    initial: 0.3, // initial delay
+    initial: 0.3,
     profileShot: {
-      duration: 1.15, // profile shot duration
-      delay: 0, // additional delay after initial
+      duration: 1.15,
+      delay: 0,
     },
     leftRight: {
-      duration: 0.7, // duration of each left/right animation
-      delay: 0.05, // delay after last left/right animation
-      stagger: 0.1, // delay between each left/right animation
+      duration: 0.7,
+      delay: 0.05,
+      stagger: 0.1,
     },
     directional: {
-      duration: 0.7, // duration of each directional animation
-      delay: 0.01, // delay after last directional animation
-      stagger: 0.1, // delay between each directional animation
+      duration: 0.7,
+      delay: 0.01,
+      stagger: 0.1,
     },
     overlay: {
-      duration: 1.5, // duration of overlay animation
-      delay: 0.6, // delay after all previous animations complete
+      duration: 1.5,
+      delay: 0.6,
     },
   };
 
@@ -129,18 +129,27 @@ const SiteReveal = () => {
           )
         );
 
-        // Final overlay animation
-        await animate(
-          scope.current,
-          {
-            clipPath: ["inset(0 0 0 0)", "inset(0 0 100% 0)"],
-          },
-          {
-            duration: timeline.overlay.duration,
-            ease: customEase,
-            delay: timeline.overlay.delay,
-          }
-        );
+        // Final animations - clip overlay and fade out all elements
+        await Promise.all([
+          animate(
+            scope.current,
+            { clipPath: "inset(0 0 100% 0)" },
+            {
+              duration: timeline.overlay.duration,
+              ease: customEase,
+              delay: timeline.overlay.delay,
+            }
+          ),
+          animate(
+            "figure[data-profileshot], span[data-blurfadeinleft], span[data-blurfadeinright], figure[data-blurfadetopleft], figure[data-blurfadetop], figure[data-blurfadebottom], figure[data-blurfadebottomright]",
+            { opacity: 0 },
+            {
+              duration: timeline.overlay.duration,
+              ease: customEase,
+              delay: timeline.overlay.delay + timeline.overlay.duration * 0.1,
+            }
+          ),
+        ]);
 
         setShowOverlay(false);
       } catch (error) {
@@ -156,7 +165,7 @@ const SiteReveal = () => {
       {showOverlay && (
         <motion.section
           ref={scope}
-          className="fixed inset-0 z-1000 grid w-screen min-h-screen text-ocean-dark dark:text-ocean-light bg-ocean-light dark:bg-ocean-dark overflow-hidden [&>figure]:not-[&:nth-child(3)]:absolute [&>figure]:m-0 [&>figure]:p-0"
+          className="fixed inset-0 z-1000 grid w-screen min-h-screen text-ocean-light bg-ocean-dark overflow-hidden [&>figure]:not-[&:nth-child(3)]:absolute [&>figure]:m-0 [&>figure]:p-0"
           data-overlay
           initial={{
             opacity: 1,
