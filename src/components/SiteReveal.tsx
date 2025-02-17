@@ -1,0 +1,263 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence, useAnimate, cubicBezier } from "motion/react";
+import Image from "next/image";
+
+const SiteReveal = () => {
+  const [scope, animate] = useAnimate();
+  const [showOverlay, setShowOverlay] = useState(true);
+
+  const timeline = {
+    initial: 0.3, // initial delay
+    profileShot: {
+      duration: 1.15, // profile shot duration
+      delay: 0, // additional delay after initial
+    },
+    leftRight: {
+      duration: 0.7, // duration of each left/right animation
+      delay: 0.05, // delay after last left/right animation
+      stagger: 0.1, // delay between each left/right animation
+    },
+    directional: {
+      duration: 0.7, // duration of each directional animation
+      delay: 0.01, // delay after last directional animation
+      stagger: 0.1, // delay between each directional animation
+    },
+    overlay: {
+      duration: 1.5, // duration of overlay animation
+      delay: 0.6, // delay after all previous animations complete
+    },
+  };
+
+  const customEase = cubicBezier(0.645, 0, 0.045, 1);
+
+  useEffect(() => {
+    const hasSeenIntro = sessionStorage.getItem("hasSeenIntro");
+    if (hasSeenIntro) {
+      setShowOverlay(false);
+      return;
+    }
+
+    sessionStorage.setItem("hasSeenIntro", "true");
+
+    const sequence = async () => {
+      try {
+        // Ensure main section is visible
+        await animate(
+          scope.current,
+          { opacity: 1 },
+          { duration: 0.3, ease: customEase }
+        );
+
+        // Profile shot animation
+        await animate(
+          "figure[data-profileshot]",
+          {
+            clipPath: ["inset(100% 0 0 0)", "inset(0 0 0 0)"],
+            scale: [1.05, 1],
+            opacity: [0, 1],
+          },
+          {
+            duration: timeline.profileShot.duration,
+            ease: customEase,
+            delay: timeline.initial,
+          }
+        );
+
+        // Left/Right animations
+        await Promise.all([
+          animate(
+            "span[data-blurfadeinleft]",
+            {
+              x: ["20px", 0],
+              opacity: [0, 1],
+              filter: ["blur(10px)", "blur(0px)"],
+            },
+            {
+              duration: timeline.leftRight.duration,
+              ease: customEase,
+              delay: timeline.leftRight.delay,
+            }
+          ),
+          animate(
+            "span[data-blurfadeinright]",
+            {
+              x: ["-20px", 0],
+              opacity: [0, 0.7],
+              filter: ["blur(10px)", "blur(0px)"],
+            },
+            {
+              duration: timeline.leftRight.duration,
+              ease: customEase,
+              delay: timeline.leftRight.delay + timeline.leftRight.stagger,
+            }
+          ),
+        ]);
+
+        // Directional animations
+        const directions = [
+          {
+            selector: "figure[data-blurfadetopleft]",
+            initial: { x: -50, y: -50 },
+          },
+          { selector: "figure[data-blurfadetop]", initial: { x: 0, y: -50 } },
+          { selector: "figure[data-blurfadebottom]", initial: { x: 0, y: 50 } },
+          {
+            selector: "figure[data-blurfadebottomright]",
+            initial: { x: 50, y: 50 },
+          },
+        ];
+
+        await Promise.all(
+          directions.map((dir, i) =>
+            animate(
+              dir.selector,
+              {
+                x: [dir.initial.x, 0],
+                y: [dir.initial.y, 0],
+                opacity: [0, 1],
+                filter: ["blur(10px)", "blur(0px)"],
+                rotate: [0, Math.random() * 6 - 3],
+              },
+              {
+                duration: timeline.directional.duration,
+                ease: customEase,
+                delay:
+                  timeline.directional.delay + i * timeline.directional.stagger,
+              }
+            )
+          )
+        );
+
+        // Final overlay animation
+        await animate(
+          scope.current,
+          {
+            clipPath: ["inset(0 0 0 0)", "inset(0 0 100% 0)"],
+          },
+          {
+            duration: timeline.overlay.duration,
+            ease: customEase,
+            delay: timeline.overlay.delay,
+          }
+        );
+
+        setShowOverlay(false);
+      } catch (error) {
+        console.error("Animation error:", error);
+      }
+    };
+
+    sequence();
+  }, [animate, scope]);
+
+  return (
+    <AnimatePresence mode="wait">
+      {showOverlay && (
+        <motion.section
+          ref={scope}
+          className="fixed inset-0 z-1000 grid w-screen min-h-screen text-ocean-dark dark:text-ocean-light bg-ocean-light dark:bg-ocean-dark overflow-hidden [&>figure]:not-[&:nth-child(3)]:absolute [&>figure]:m-0 [&>figure]:p-0"
+          data-overlay
+          initial={{
+            opacity: 1,
+            clipPath: "inset(0 0 0 0)",
+          }}
+          animate={{
+            opacity: 0,
+            clipPath: "inset(0 0 0 0)",
+          }}
+        >
+          <motion.figure
+            className="w-[60vh] -top-[10%] -left-[120px]"
+            data-blurfadetopleft
+            initial={{ opacity: 0 }}
+          >
+            <Image
+              src="/images/work/realo/TabletLandscapeSearch.png"
+              alt="Realo tablet view"
+              width={800}
+              height={600}
+              className="relative"
+            />
+          </motion.figure>
+
+          <motion.figure
+            className="w-[30vh] -top-[20%] right-[8%]"
+            data-blurfadetop
+            initial={{ opacity: 0 }}
+          >
+            <Image
+              src="/images/work/gamepal/PhoneJournal.png"
+              alt="GamePal journal view"
+              width={600}
+              height={800}
+              className="relative"
+            />
+          </motion.figure>
+
+          <div className="grid grid-cols-[auto_15vw_auto] gap-2 place-content-center [&>*]:flex [&>*]:text-sm [&>*]:[writing-mode:vertical-lr]">
+            <motion.span
+              className="items-end justify-end font-medium"
+              data-blurfadeinleft
+              initial={{ opacity: 0 }}
+            >
+              Jeremy Swinnen
+            </motion.span>
+
+            <motion.figure
+              data-profileshot
+              className="relative items-center"
+              initial={{ opacity: 0, clipPath: "inset(100% 0 0 0)" }}
+            >
+              <Image
+                src="/images/profileShot.webp"
+                alt="Profile photo"
+                width={200}
+                height={200}
+                className="w-full h-full object-cover"
+              />
+            </motion.figure>
+
+            <motion.span
+              className="items-start opacity-70"
+              data-blurfadeinright
+              initial={{ opacity: 0 }}
+            >
+              UX/UI Designer & Creative Developer
+            </motion.span>
+          </div>
+
+          <motion.figure
+            className="w-[30vh] -bottom-[10%] left-[8%]"
+            data-blurfadebottom
+            initial={{ opacity: 0 }}
+          >
+            <Image
+              src="/images/work/gamepal/PhoneYearInPlayStart.png"
+              alt="GamePal year in play"
+              width={600}
+              height={800}
+              className="relative"
+            />
+          </motion.figure>
+
+          <motion.figure
+            className="w-[60vh] -bottom-[10%] -right-[120px]"
+            data-blurfadebottomright
+            initial={{ opacity: 0 }}
+          >
+            <Image
+              src="/images/work/scorecard/TabletGameSessionsDark.png"
+              alt="Scorecard tablet view"
+              width={800}
+              height={600}
+              className="relative"
+            />
+          </motion.figure>
+        </motion.section>
+      )}
+    </AnimatePresence>
+  );
+};
+
+export default SiteReveal;
