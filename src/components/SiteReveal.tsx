@@ -53,7 +53,7 @@ const SiteReveal = () => {
         await animate(
           "figure[data-profileshot]",
           {
-            clipPath: ["inset(100% 0 0 0)", "inset(0 0 0 0)"],
+            clipPath: ["inset(100% 0% 0% 0%)", "inset(0% 0% 0% 0%)"],
             scale: [1.05, 1],
             opacity: [0, 1],
           },
@@ -133,7 +133,9 @@ const SiteReveal = () => {
         await Promise.all([
           animate(
             scope.current,
-            { clipPath: "inset(0 0 100% 0)" },
+            {
+              clipPath: ["inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"],
+            },
             {
               duration: timeline.overlay.duration,
               ease: customEase,
@@ -163,18 +165,15 @@ const SiteReveal = () => {
   return (
     <AnimatePresence mode="wait">
       {showOverlay && (
-        <motion.section
+        <section
           ref={scope}
           className="fixed inset-0 z-1000 grid w-screen min-h-screen text-ocean-light bg-ocean-dark overflow-hidden [&>figure]:not-[&:nth-child(3)]:absolute [&>figure]:m-0 [&>figure]:p-0"
-          data-overlay
-          initial={{
-            opacity: 1,
-            clipPath: "inset(0 0 0 0)",
-          }}
-          animate={{
+          style={{
             opacity: 0,
-            clipPath: "inset(0 0 0 0)",
+            WebkitClipPath: "inset(0% 0% 0% 0%)",
+            clipPath: "inset(0% 0% 0% 0%)",
           }}
+          data-overlay
         >
           <motion.figure
             className="w-[60vh] -top-[10%] -left-[120px]"
@@ -216,7 +215,7 @@ const SiteReveal = () => {
             <motion.figure
               data-profileshot
               className="relative items-center"
-              initial={{ opacity: 0, clipPath: "inset(100% 0 0 0)" }}
+              initial={{ opacity: 0, clipPath: "inset(100% 0% 0% 0%)" }}
             >
               <Image
                 src="/images/profileShot.webp"
@@ -263,7 +262,7 @@ const SiteReveal = () => {
               className="relative"
             />
           </motion.figure>
-        </motion.section>
+        </section>
       )}
     </AnimatePresence>
   );

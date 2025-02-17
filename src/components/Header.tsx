@@ -17,7 +17,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { path: "/", label: "Work" },
   { path: "/info", label: "Info" },
-  // { path: "/blog", label: "Blog" },
+  { path: "/blog", label: "Blog" },
   // { path: "/contact", label: "Contact" },
   { isCopyable: true, path: "hey@jeremys.be", label: "hey@jeremys.be" },
 ];
