@@ -27,7 +27,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en">
         <body
-          className={`${bricolageGrotesque.variable} o-container o-grid !gap-y-0 text-stone-900 dark:text-white bg-white dark:bg-stone-950 antialiased`}
+          className={`${bricolageGrotesque.variable} o-container o-grid !gap-y-0 text-stone-900 dark:text-white bg-white dark:bg-stone-950 antialiased selection:bg-ocean-light selection:text-ocean-dark dark:selection:bg-ocean-dark dark:selection:text-ocean-light`}
         >
           <SiteReveal />
           <LenisProvider />
