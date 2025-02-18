@@ -7,27 +7,45 @@
   "endDate": "12/22",
   "artwork": [
     {
-      "src": "PhoneSearch",
+      "src": "PhoneOnboarding",
       "caption": "Main project interface",
       "colSpan": 2
     },
     {
-      "src": "PhoneRejectPerformance",
+      "src": "PhonePlatformAgenda",
       "caption": "Main project interface",
       "colSpan": 2
     },
     {
-      "src": "PhoneProfile",
+      "src": "TabletSearch",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    },
+    {
+      "src": "PhonePlatformHome",
       "caption": "Main project interface",
       "colSpan": 2
     },
     {
-      "src": "PhonePerformances",
+      "src": "TabletMatched",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    },
+    {
+      "src": "PhoneDialogAppointmentDetails",
       "caption": "Main project interface",
       "colSpan": 2
     },
     {
-      "src": "PhoneOverview",
+      "src": "TabletRequestPosted",
+      "caption": "Main project interface",
+      "colSpan": 2,
+      "mdColSpan": 4
+    },
+    {
+      "src": "PhonePlatformPerformances",
       "caption": "Main project interface",
       "colSpan": 2
     }
