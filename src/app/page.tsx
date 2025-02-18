@@ -31,10 +31,10 @@ export default async function Home() {
         <article className="col-span-2 text-balance [&>*]:!mb-0">
           <p>
             I&rsquo;m a designer and developer from Belgium with{" "}
-            <em className="font-medium">15+ years of experience</em> in digital
+            <b className="font-semibold">15+ years of experience</b> in digital
             product design. Currently, I&rsquo;m looking for a full-time UX/UI
             designer role. Want to work with me? Feel free to reach out via{" "}
-            <a href="mailto:hey@jeremys.be" className="font-medium">
+            <a href="mailto:hey@jeremys.be" className="font-semibold">
               email
             </a>
             .
