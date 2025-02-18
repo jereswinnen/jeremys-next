@@ -15,8 +15,12 @@
   --ease-circ: cubic-bezier(0.645, 0, 0.045, 1);
   --color-forest-light: #6ee26b;
   --color-forest-dark: #1a5619;
-  --color-ocean-light: #46ccd5;
-  --color-ocean-dark: #09465a;
+  --color-sky-light: #46ccd5;
+  --color-sky-dark: #09465a;
+  --color-sun-light: #ffbc50;
+  --color-sun-dark: #553b06;
+  --color-ocean-light: #88b4fc;
+  --color-ocean-dark: #012a69;
 }
 
 body {
@@ -81,6 +85,14 @@ p:not(:last-of-type) {
 
 .t-forest {
   @apply bg-forest-light text-forest-dark;
+}
+
+.t-sky {
+  @apply bg-sky-light text-sky-dark;
+}
+
+.t-sun {
+  @apply bg-sun-light text-sun-dark;
 }
 
 .t-ocean {

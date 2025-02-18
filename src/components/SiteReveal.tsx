@@ -184,7 +184,7 @@ const SiteReveal = () => {
       {showOverlay && (
         <section
           ref={scope}
-          className="fixed inset-0 z-1000 grid w-screen min-h-screen text-ocean-dark bg-ocean-light dark:text-ocean-light dark:bg-ocean-dark overflow-hidden [&>figure]:not-[&:nth-child(3)]:absolute [&>figure]:m-0 [&>figure]:p-0"
+          className="fixed inset-0 z-1000 grid w-screen min-h-screen text-white bg-stone-950 dark:text-stone-950 dark:bg-white overflow-hidden [&>figure]:not-[&:nth-child(3)]:absolute [&>figure]:m-0 [&>figure]:p-0"
           style={{
             opacity: 0,
             WebkitClipPath: "inset(0% 0% 0% 0%)",
