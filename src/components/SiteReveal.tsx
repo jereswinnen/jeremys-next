@@ -38,8 +38,6 @@ const SiteReveal = () => {
       return;
     }
 
-    sessionStorage.setItem("hasSeenIntro", "true");
-
     const sequence = async () => {
       try {
         // Ensure main section is visible
@@ -153,6 +151,7 @@ const SiteReveal = () => {
           ),
         ]);
 
+        sessionStorage.setItem("hasSeenIntro", "true");
         setShowOverlay(false);
       } catch (error) {
         console.error("Animation error:", error);
