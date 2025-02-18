@@ -26,11 +26,7 @@ export default async function Info() {
           </h2>
         </header>
         <div className="col-span-full flex flex-wrap md:flex-nowrap items-center gap-4 md:gap-6">
-          <Button
-            data-copyEmail={true}
-            href="mailto:hey@jeremys.be"
-            label="Email"
-          />
+          <Button data-copyEmail={true} href="hey@jeremys.be" label="Email" />
           <Button href="https://threads.net/@jereswinnen" label="Threads" />
           <Button href="https://mstdn.social/@jeremys" label="Mastodon" />
         </div>
