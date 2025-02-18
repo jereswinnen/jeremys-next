@@ -32,6 +32,18 @@ const SiteReveal = () => {
   const customEase = cubicBezier(0.645, 0, 0.045, 1);
 
   useEffect(() => {
+    if (showOverlay) {
+      document.body.style.position = "fixed";
+    } else {
+      document.body.style.position = "";
+    }
+
+    return () => {
+      document.body.style.position = "";
+    };
+  }, [showOverlay]);
+
+  useEffect(() => {
     const hasSeenIntro = sessionStorage.getItem("hasSeenIntro");
     if (hasSeenIntro) {
       setShowOverlay(false);
@@ -132,7 +144,9 @@ const SiteReveal = () => {
           animate(
             scope.current,
             {
+              display: "none",
               clipPath: ["inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"],
+              pointerEvents: "none",
             },
             {
               duration: timeline.overlay.duration,
@@ -142,7 +156,11 @@ const SiteReveal = () => {
           ),
           animate(
             "figure[data-profileshot], span[data-blurfadeinleft], span[data-blurfadeinright], figure[data-blurfadetopleft], figure[data-blurfadetop], figure[data-blurfadebottom], figure[data-blurfadebottomright]",
-            { opacity: 0 },
+            {
+              opacity: 0,
+              y: -50,
+              scale: 0.95,
+            },
             {
               duration: timeline.overlay.duration,
               ease: customEase,
@@ -166,7 +184,7 @@ const SiteReveal = () => {
       {showOverlay && (
         <section
           ref={scope}
-          className="fixed inset-0 z-1000 grid w-screen min-h-screen text-ocean-light bg-ocean-dark overflow-hidden [&>figure]:not-[&:nth-child(3)]:absolute [&>figure]:m-0 [&>figure]:p-0"
+          className="fixed inset-0 z-1000 grid w-screen min-h-screen text-ocean-dark bg-ocean-light dark:text-ocean-light dark:bg-ocean-dark overflow-hidden [&>figure]:not-[&:nth-child(3)]:absolute [&>figure]:m-0 [&>figure]:p-0"
           style={{
             opacity: 0,
             WebkitClipPath: "inset(0% 0% 0% 0%)",
