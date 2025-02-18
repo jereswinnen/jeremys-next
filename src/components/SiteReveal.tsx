@@ -140,37 +140,37 @@ const SiteReveal = () => {
         );
 
         // Final animations - clip overlay and fade out all elements
-        await Promise.all([
-          animate(
-            scope.current,
-            {
-              display: "none",
-              clipPath: ["inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"],
-              pointerEvents: "none",
-            },
-            {
-              duration: timeline.overlay.duration,
-              ease: customEase,
-              delay: timeline.overlay.delay,
-            }
-          ),
-          animate(
-            "figure[data-profileshot], span[data-blurfadeinleft], span[data-blurfadeinright], figure[data-blurfadetopleft], figure[data-blurfadetop], figure[data-blurfadebottom], figure[data-blurfadebottomright]",
-            {
-              opacity: 0,
-              y: -50,
-              scale: 0.95,
-            },
-            {
-              duration: timeline.overlay.duration,
-              ease: customEase,
-              delay: timeline.overlay.delay + timeline.overlay.duration * 0.1,
-            }
-          ),
-        ]);
+        // await Promise.all([
+        //   animate(
+        //     scope.current,
+        //     {
+        //       display: "none",
+        //       clipPath: ["inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"],
+        //       pointerEvents: "none",
+        //     },
+        //     {
+        //       duration: timeline.overlay.duration,
+        //       ease: customEase,
+        //       delay: timeline.overlay.delay,
+        //     }
+        //   ),
+        //   animate(
+        //     "figure[data-profileshot], span[data-blurfadeinleft], span[data-blurfadeinright], figure[data-blurfadetopleft], figure[data-blurfadetop], figure[data-blurfadebottom], figure[data-blurfadebottomright]",
+        //     {
+        //       opacity: 0,
+        //       y: -50,
+        //       scale: 0.95,
+        //     },
+        //     {
+        //       duration: timeline.overlay.duration,
+        //       ease: customEase,
+        //       delay: timeline.overlay.delay + timeline.overlay.duration * 0.1,
+        //     }
+        //   ),
+        // ]);
 
-        sessionStorage.setItem("hasSeenIntro", "true");
-        setShowOverlay(false);
+        // sessionStorage.setItem("hasSeenIntro", "true");
+        // setShowOverlay(false);
       } catch (error) {
         console.error("Animation error:", error);
       }
@@ -193,7 +193,7 @@ const SiteReveal = () => {
           data-overlay
         >
           <motion.figure
-            className="w-[60vh] -top-[10%] -left-[120px]"
+            className="hidden md:block w-[60vh] -top-[10%] -left-[120px]"
             data-blurfadetopleft
             initial={{ opacity: 0 }}
           >
@@ -207,7 +207,7 @@ const SiteReveal = () => {
           </motion.figure>
 
           <motion.figure
-            className="w-[30vh] -top-[20%] right-[8%]"
+            className="hidden md:block w-[30vh] -top-[20%] right-[8%]"
             data-blurfadetop
             initial={{ opacity: 0 }}
           >
@@ -220,7 +220,7 @@ const SiteReveal = () => {
             />
           </motion.figure>
 
-          <div className="grid grid-cols-[auto_15vw_auto] gap-2 place-content-center [&>*]:flex [&>*]:text-sm [&>*]:[writing-mode:vertical-lr]">
+          <div className="grid grid-cols-[auto_70vw_auto] md:grid-cols-[auto_15vw_auto] gap-2 place-content-center [&>*]:flex [&>*]:text-sm [&>*]:[writing-mode:vertical-lr]">
             <motion.span
               className="items-end justify-end font-medium"
               data-blurfadeinleft
@@ -231,7 +231,7 @@ const SiteReveal = () => {
 
             <motion.figure
               data-profileshot
-              className="relative items-center"
+              className="relative max-h-[45vh] md:max-h-auto items-center"
               initial={{ opacity: 0, clipPath: "inset(100% 0% 0% 0%)" }}
             >
               <Image
@@ -253,7 +253,7 @@ const SiteReveal = () => {
           </div>
 
           <motion.figure
-            className="w-[30vh] -bottom-[10%] left-[8%]"
+            className="hidden md:block w-[30vh] -bottom-[10%] left-[8%]"
             data-blurfadebottom
             initial={{ opacity: 0 }}
           >
@@ -267,7 +267,7 @@ const SiteReveal = () => {
           </motion.figure>
 
           <motion.figure
-            className="w-[60vh] -bottom-[10%] -right-[120px]"
+            className="hidden md:block w-[60vh] -bottom-[10%] -right-[120px]"
             data-blurfadebottomright
             initial={{ opacity: 0 }}
           >
