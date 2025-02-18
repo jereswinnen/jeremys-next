@@ -101,7 +101,7 @@ const Footer: FC<FooterProps> = ({ className = "" }) => {
       </div>
 
       <div className="col-span-full grid grid-cols-subgrid gap-y-2 md:gap-y-0 h-fit content-start">
-        <div className="col-span-full md:!col-span-3 flex gap-2 items-center justify-center md:justify-start">
+        <div className="hidden col-span-full md:!col-span-3 flx gap-2 items-center justify-center md:justify-start">
           <div className="relative inline-block overflow-hidden w-7 h-7">
             <img
               className="vinylMask block w-full h-full object-cover"
