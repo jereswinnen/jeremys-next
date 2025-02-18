@@ -140,37 +140,37 @@ const SiteReveal = () => {
         );
 
         // Final animations - clip overlay and fade out all elements
-        // await Promise.all([
-        //   animate(
-        //     scope.current,
-        //     {
-        //       display: "none",
-        //       clipPath: ["inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"],
-        //       pointerEvents: "none",
-        //     },
-        //     {
-        //       duration: timeline.overlay.duration,
-        //       ease: customEase,
-        //       delay: timeline.overlay.delay,
-        //     }
-        //   ),
-        //   animate(
-        //     "figure[data-profileshot], span[data-blurfadeinleft], span[data-blurfadeinright], figure[data-blurfadetopleft], figure[data-blurfadetop], figure[data-blurfadebottom], figure[data-blurfadebottomright]",
-        //     {
-        //       opacity: 0,
-        //       y: -50,
-        //       scale: 0.95,
-        //     },
-        //     {
-        //       duration: timeline.overlay.duration,
-        //       ease: customEase,
-        //       delay: timeline.overlay.delay + timeline.overlay.duration * 0.1,
-        //     }
-        //   ),
-        // ]);
+        await Promise.all([
+          animate(
+            scope.current,
+            {
+              display: "none",
+              clipPath: ["inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"],
+              pointerEvents: "none",
+            },
+            {
+              duration: timeline.overlay.duration,
+              ease: customEase,
+              delay: timeline.overlay.delay,
+            }
+          ),
+          animate(
+            "figure[data-profileshot], span[data-blurfadeinleft], span[data-blurfadeinright], figure[data-blurfadetopleft], figure[data-blurfadetop], figure[data-blurfadebottom], figure[data-blurfadebottomright]",
+            {
+              opacity: 0,
+              y: -50,
+              scale: 0.95,
+            },
+            {
+              duration: timeline.overlay.duration,
+              ease: customEase,
+              delay: timeline.overlay.delay + timeline.overlay.duration * 0.1,
+            }
+          ),
+        ]);
 
-        // sessionStorage.setItem("hasSeenIntro", "true");
-        // setShowOverlay(false);
+        sessionStorage.setItem("hasSeenIntro", "true");
+        setShowOverlay(false);
       } catch (error) {
         console.error("Animation error:", error);
       }
