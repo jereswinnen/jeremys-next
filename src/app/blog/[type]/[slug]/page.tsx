@@ -26,9 +26,15 @@ export async function generateMetadata({
   }
 
   return {
-    title: "title" in post ? post.title : `Note - ${post.date}`,
+    title:
+      "title" in post
+        ? `${post.title} - Jeremy Swinnen`
+        : `Note - ${post.date} - Jeremy Swinnen`,
     openGraph: {
-      title: "title" in post ? post.title : `Note - ${post.date}`,
+      title:
+        "title" in post
+          ? `${post.title} - Jeremy Swinnen`
+          : `Note - ${post.date} - Jeremy Swinnen`,
     },
   };
 }

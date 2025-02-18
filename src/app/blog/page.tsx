@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/blog";
 import EntryList from "@/components/blog/EntryList";
+
+export const metadata: Metadata = {
+  title: "Blog - Jeremy Swinnen",
+};
 
 export default async function Blog() {
   const posts = await getAllPosts();

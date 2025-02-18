@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Button from "@/components/Button";
 import ProjectListItem from "@/components/ProjectListItem";
 import ShaderWrapper from "@/components/ShaderWrapper";
@@ -6,6 +7,10 @@ import {
   getProjects,
   sortProjects,
 } from "@/lib/projectUtils";
+
+export const metadata: Metadata = {
+  title: "Info - Jeremy Swinnen",
+};
 
 export default async function Info() {
   const projects = await getProjects();
