@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/blog";
 import EntryList from "@/components/blog/EntryList";
+import Button from "@/components/Button";
 
 export const metadata: Metadata = {
   title: "Blog - Jeremy Swinnen",
@@ -18,6 +19,9 @@ export default async function Blog() {
             Blog
           </h2>
         </header>
+        <div className="col-span-full flex flex-wrap md:flex-nowrap items-center gap-4 md:gap-6">
+          <Button href="https://jeremys.be/feed.xml" label="RSS" />
+        </div>
       </section>
       <section className="col-span-full grid grid-cols-subgrid gap-y-6 md:gap-y-0 pt-6 border-t border-stone-950 dark:border-white/20">
         {posts.length === 0 ? (
