@@ -36,7 +36,7 @@ export default function EntryList({ posts }: EntryListProps) {
           <h2 className="text-2xl font-semibold">
             <time dateTime={new Date(date).toISOString()}>{date}</time>
           </h2>
-          <div className="flex flex-col [&>*:not(:first-child)]:pt-5 [&>*:not(:last-child)]:pb-5 divide-y divide-stone-950/15 dark:divide-white/15">
+          <div className="flex flex-col [&>*:not(:first-child)]:pt-5 [&>*:not(:last-child)]:pb-5 divide-y divide-stone-950/10 dark:divide-white/10">
             {posts.map((post) => (
               <article
                 key={post.slug}
