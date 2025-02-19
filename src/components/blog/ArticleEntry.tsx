@@ -10,7 +10,10 @@ export default function ArticleEntry({ post }: ArticleEntryProps) {
   return (
     <>
       <section className="flex justify-end">
-        <time className="text-sm opacity-70">
+        <time
+          dateTime={new Date(post.date).toISOString()}
+          className="text-sm opacity-70"
+        >
           {new Date(post.date).toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",

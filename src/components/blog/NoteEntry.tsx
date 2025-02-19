@@ -14,7 +14,7 @@ export default function NoteEntry({ post }: NoteEntryProps) {
           href={`/blog/notes/${post.slug}`}
           className="text-sm opacity-70 hover:opacity-100"
         >
-          <time>
+          <time dateTime={new Date(post.date).toISOString()}>
             {new Date(post.date).toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",
