@@ -15,10 +15,10 @@ export default function LinkEntry({ post }: LinkEntryProps) {
           className="text-sm opacity-70 hover:opacity-100"
         >
           <time dateTime={new Date(post.date).toISOString()}>
-            {new Date(post.date).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
+            {new Date(post.date).toLocaleTimeString("en-US", {
+              hour: "numeric",
+              minute: "numeric",
+              hour12: true,
             })}
           </time>
         </Link>

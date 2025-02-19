@@ -14,10 +14,10 @@ export default function ArticleEntry({ post }: ArticleEntryProps) {
           dateTime={new Date(post.date).toISOString()}
           className="text-sm opacity-70"
         >
-          {new Date(post.date).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
+          {new Date(post.date).toLocaleTimeString("en-US", {
+            hour: "numeric",
+            minute: "numeric",
+            hour12: true,
           })}
         </time>
       </section>
