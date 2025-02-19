@@ -8,20 +8,21 @@ interface ArticleEntryProps {
 
 export default function ArticleEntry({ post }: ArticleEntryProps) {
   return (
-    <div className="p-4 border rounded-lg">
-      <Link
-        href={`/blog/articles/${post.slug}`}
-        className="text-xl font-semibold hover:underline block"
-      >
-        {post.title}
-      </Link>
-      <time className="text-sm text-gray-500 mt-1 block">
-        {new Date(post.date).toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
-      </time>
-    </div>
+    <>
+      <section className="flex justify-end">
+        <time className="text-sm opacity-70">
+          {new Date(post.date).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </time>
+      </section>
+      <section className="flex flex-col">
+        <h3 className="text-lg font-medium hover:underline">
+          <Link href={`/blog/articles/${post.slug}`}>{post.title}</Link>
+        </h3>
+      </section>
+    </>
   );
 }

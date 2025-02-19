@@ -8,14 +8,38 @@ interface NoteEntryProps {
 
 export default function NoteEntry({ post }: NoteEntryProps) {
   return (
-    <div className="p-4 border rounded-lg">
-      {post.title && <h3 className="font-semibold">{post.title}</h3>}
-      <Link
-        href={`/blog/notes/${post.slug}`}
-        className="text-gray-500 hover:underline"
-      >
-        {new Date(post.date).toLocaleDateString()}
-      </Link>
-    </div>
+    <>
+      <section className="flex justify-end">
+        <Link
+          href={`/blog/notes/${post.slug}`}
+          className="text-sm opacity-70 hover:opacity-100"
+        >
+          <time>
+            {new Date(post.date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </time>
+        </Link>
+      </section>
+      {
+        <section className="flex flex-col">
+          {post.title && (
+            <header>
+              <h3>
+                <Link
+                  href={`/blog/notes/${post.slug}`}
+                  className="text-base font-semibold hover:underline"
+                >
+                  {post.title}
+                </Link>
+              </h3>
+            </header>
+          )}
+          <div className="text-balance">{post.body}</div>
+        </section>
+      }
+    </>
   );
 }

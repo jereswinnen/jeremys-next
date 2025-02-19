@@ -8,21 +8,36 @@ interface LinkEntryProps {
 
 export default function LinkEntry({ post }: LinkEntryProps) {
   return (
-    <div className="p-4 border rounded-lg">
-      <a
-        href={post.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-xl font-semibold hover:underline"
-      >
-        {post.title}
-      </a>
-      <Link
-        href={`/blog/links/${post.slug}`}
-        className="ml-4 text-sm text-gray-500 hover:underline"
-      >
-        {new Date(post.date).toLocaleDateString()}
-      </Link>
-    </div>
+    <>
+      <section className="flex justify-end">
+        <Link
+          href={`/blog/links/${post.slug}`}
+          className="text-sm opacity-70 hover:opacity-100"
+        >
+          <time>
+            {new Date(post.date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </time>
+        </Link>
+      </section>
+      <section className="flex flex-col gap-3">
+        <a
+          href={post.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-col px-2 py-1 bg-stone-100 dark:bg-stone-900 rounded"
+        >
+          <span className="font-semibold">{post.title}</span>
+          <span className="text-sm opacity-70">{post.url}</span>
+        </a>
+        <div className="flex gap-3">
+          <span className="w-[3px] h-full bg-stone-300 dark:bg-stone-700 rounded-full"></span>
+          {post.note && <div className="text-balance">{post.note}</div>}
+        </div>
+      </section>
+    </>
   );
 }

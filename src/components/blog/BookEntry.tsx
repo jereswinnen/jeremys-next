@@ -9,34 +9,45 @@ interface BookEntryProps {
 
 export default function BookEntry({ post }: BookEntryProps) {
   return (
-    <div className="p-4 border rounded-lg flex gap-4">
-      <Image
-        src={post.cover}
-        alt={post.title}
-        width={80}
-        height={120}
-        className="object-cover"
-      />
-      <div>
-        <h3 className="font-semibold">{post.title}</h3>
-        <p className="text-gray-600">{post.author}</p>
-        <time className="text-sm text-gray-500 block mt-1">
-          {new Date(post.date).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
-        </time>
-        <div className="mt-2">
-          Rating: {post.rating}/5
-          <Link
-            href={`/blog/books/${post.slug}`}
-            className="ml-4 text-blue-500 hover:underline"
+    <>
+      <section className="flex justify-end">
+        <Link
+          href={`/blog/books/${post.slug}`}
+          className="text-sm opacity-70 hover:opacity-100"
+        >
+          <time>
+            {new Date(post.date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </time>
+        </Link>
+      </section>
+      <section className="flex flex-col gap-3">
+        <header>
+          <a
+            href="/"
+            className="flex gap-2 px-2 py-1 bg-stone-100 dark:bg-stone-900 rounded"
           >
-            Read more
-          </Link>
-        </div>
-      </div>
-    </div>
+            <Image
+              src={post.cover}
+              alt={`${post.title} by ${post.author}`}
+              width={80}
+              height={120}
+              className="relative w-8 h-auto rounded"
+            />
+            <div className="flex flex-col">
+              <span className="font-semibold">{post.title}</span>
+              <span className="text-sm opacity-70">{post.author}</span>
+            </div>
+            {post.rating && (
+              <div className="text-sm opacity-70">Rating: {post.rating}</div>
+            )}
+          </a>
+        </header>
+        {post.note && <div className="text-balance">{post.note}</div>}
+      </section>
+    </>
   );
 }
