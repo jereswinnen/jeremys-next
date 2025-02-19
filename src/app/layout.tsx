@@ -17,6 +17,20 @@ const bricolageGrotesque = Bricolage_Grotesque({
 export const metadata: Metadata = {
   title: "Jeremy Swinnen",
   description: "A designer and developer from Belgium",
+  openGraph: {
+    title: "Jeremy Swinnen",
+    description: "A designer and developer from Belgium",
+    url: "https://jeremys.be",
+    type: "website",
+    images: [
+      {
+        url: "https://jeremys.be/images/shareCover.png",
+        width: 1200,
+        height: 630,
+        alt: "Jeremy Swinnen is a designer and developer from Belgium",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
