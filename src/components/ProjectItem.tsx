@@ -8,12 +8,7 @@ interface ProjectItemProps {
 
 const ProjectItem: FC<ProjectItemProps> = ({ project }) => {
   return (
-    <section
-      {...{
-        [`data-project-${project.name.toLowerCase().replace(/\s+/g, "")}`]: "",
-      }}
-      className="col-span-full grid grid-cols-subgrid !gap-y-[calc(var(--u-grid-gap)/2)] pt-6 border-t border-stone-900 dark:border-white/20"
-    >
+    <section className="col-span-full grid grid-cols-subgrid !gap-y-[calc(var(--u-grid-gap)/2)] pt-6 border-t border-stone-900 dark:border-white/20">
       <header className="col-span-full grid grid-cols-subgrid text-sm divide-y divide-stone-900/20 dark:divide-white/20 md:divide-none [&>*]:flex [&>*]:flex-col [&>*]:gap-1 [&>*]:py-4 [&>*]:md:py-0 [&>*:first-child]:pt-0 [&>*:last-child]:pb-0 [&>*>*:first-child]:mb-0 [&>*>*:first-child]:opacity-70 [&>*>*:last-child]:font-medium">
         <div className="col-span-full md:!col-span-1">
           <p>Name</p>

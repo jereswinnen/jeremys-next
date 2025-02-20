@@ -40,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <ViewTransitions>
-      <html lang="en">
+      <html lang="en" className="scroll-smooth">
         <body
           className={`${bricolageGrotesque.variable} o-container o-grid !gap-y-0 text-stone-900 dark:text-white bg-white dark:bg-stone-950 antialiased selection:bg-ocean-light selection:text-ocean-dark dark:selection:bg-ocean-dark dark:selection:text-ocean-light`}
         >

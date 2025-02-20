@@ -1,7 +1,7 @@
 import { getProjects, sortProjects } from "@/lib/projectUtils";
 import ProjectItem from "@/components/ProjectItem";
 import ShaderWrapper from "@/components/ShaderWrapper";
-import ProjectIsland from "@/components/ProjectIsland";
+import ProjectSection from "@/components/ProjectSection";
 
 export default async function Home() {
   const projects = await getProjects();
@@ -42,11 +42,11 @@ export default async function Home() {
           </p>
         </article>
       </header>
-      <ProjectIsland>
+      <ProjectSection>
         {sortedProjects.map((project) => (
           <ProjectItem key={project.data.name} project={project.data} />
         ))}
-      </ProjectIsland>
+      </ProjectSection>
     </>
   );
 }
