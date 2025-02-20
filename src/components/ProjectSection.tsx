@@ -1,7 +1,6 @@
 "use client";
 import { useRef } from "react";
 import { cubicBezier, motion, useScroll, useTransform } from "motion/react";
-import Link from "next/link";
 
 interface ProjectSectionProps {
   children: React.ReactNode;
