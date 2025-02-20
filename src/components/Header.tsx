@@ -58,7 +58,7 @@ const Header: FC<HeaderProps> = ({ className = "" }) => {
                   onClick={(e) => handleEmailClick(e, path)}
                   onTouchEnd={(e) => handleEmailClick(e, path)}
                 >
-                  <span>{copiedEmail === path ? "Copied!" : label}</span>
+                  {copiedEmail === path ? "Copied!" : label}
                 </a>
               ) : (
                 <Link
@@ -67,7 +67,7 @@ const Header: FC<HeaderProps> = ({ className = "" }) => {
                     currentPath === path ? "font-semibold !opacity-100" : ""
                   }`}
                 >
-                  <span>{label}</span>
+                  {label}
                 </Link>
               )}
               <div className="absolute top-0 left-0 w-[1px] h-full [&>*]:absolute [&>*]:block [&>*]:w-[1px]">
