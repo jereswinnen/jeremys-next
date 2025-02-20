@@ -26,7 +26,7 @@ export default function BookEntry({ post }: BookEntryProps) {
       </section>
       <section className="flex flex-col gap-3">
         <header>
-          <a
+          <Link
             href="/"
             className="flex gap-2 px-2 py-1 bg-stone-100 dark:bg-stone-900 rounded"
           >
@@ -44,7 +44,7 @@ export default function BookEntry({ post }: BookEntryProps) {
             {post.rating && (
               <div className="text-sm opacity-70">Rating: {post.rating}</div>
             )}
-          </a>
+          </Link>
         </header>
         {post.note && <div className="text-balance">{post.note}</div>}
       </section>
