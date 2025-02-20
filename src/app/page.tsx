@@ -1,6 +1,7 @@
 import { getProjects, sortProjects } from "@/lib/projectUtils";
 import ProjectItem from "@/components/ProjectItem";
 import ShaderWrapper from "@/components/ShaderWrapper";
+import ProjectIsland from "@/components/ProjectIsland";
 
 export default async function Home() {
   const projects = await getProjects();
@@ -41,11 +42,11 @@ export default async function Home() {
           </p>
         </article>
       </header>
-      <section className="col-span-full grid grid-cols-subgrid gap-y-[calc(var(--u-grid-gap)*1.5)]">
+      <ProjectIsland>
         {sortedProjects.map((project) => (
           <ProjectItem key={project.data.name} project={project.data} />
         ))}
-      </section>
+      </ProjectIsland>
     </>
   );
 }
