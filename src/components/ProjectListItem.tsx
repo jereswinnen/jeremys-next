@@ -19,7 +19,6 @@ interface ProjectListItemProps {
 
 const ProjectListItem = ({ project, heroImage }: ProjectListItemProps) => {
   const [isHovered, setIsHovered] = useState(false);
-
   const customEase = [0.645, 0, 0.045, 1];
 
   return (
@@ -37,7 +36,7 @@ const ProjectListItem = ({ project, heroImage }: ProjectListItemProps) => {
               height: isHovered ? "auto" : 0,
             }}
             transition={{
-              duration: 0.9,
+              duration: 0.7,
               ease: customEase,
             }}
           >
@@ -50,7 +49,7 @@ const ProjectListItem = ({ project, heroImage }: ProjectListItemProps) => {
                 scale: isHovered ? 1 : 1.08,
               }}
               transition={{
-                duration: 0.9,
+                duration: 0.7,
                 ease: customEase,
               }}
             />
