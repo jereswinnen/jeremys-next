@@ -25,13 +25,18 @@ export default async function Blog() {
           <Button href="https://jeremys.be/feed.xml" label="RSS" />
         </div>
       </section>
-      <TopicList topics={topics} />
-      <section className="col-span-full grid grid-cols-subgrid gap-y-6 md:gap-y-0 pt-6 border-t border-stone-950 dark:border-white/20">
-        {posts.length === 0 ? (
-          <p>No posts found</p>
-        ) : (
-          <EntryList posts={posts} />
-        )}
+      <section className="col-span-full grid grid-cols-subgrid">
+        <section className="col-span-full md:!col-start-2 md:!col-span-5 grid grid-cols-subgrid gap-y-6 md:gap-y-0 pt-6 border-t border-stone-950 dark:border-white/20">
+          {posts.length === 0 ? (
+            <p>No posts found</p>
+          ) : (
+            <EntryList posts={posts} />
+          )}
+        </section>
+        <TopicList
+          className="col-span-full md:!col-span-2 bg-amber-800"
+          topics={topics}
+        />
       </section>
     </>
   );

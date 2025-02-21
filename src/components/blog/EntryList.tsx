@@ -29,11 +29,8 @@ export default function EntryList({ posts }: EntryListProps) {
   return (
     <section className="col-span-full grid grid-cols-subgrid [&>*:not(:first-child)]:pt-8 [&>*:not(:last-child)]:pb-8 divide-y-2 divide-stone-950/15 dark:divide-white/15">
       {Object.entries(groupedPosts).map(([date, posts]) => (
-        <section
-          key={date}
-          className="col-span-full md:!col-start-3 md:!col-span-3 flex flex-col gap-8"
-        >
-          <h2 className="text-2xl font-semibold">
+        <section key={date} className="col-span-full flex flex-col gap-8">
+          <h2 className="text-2xl">
             <time dateTime={new Date(date).toISOString()}>{date}</time>
           </h2>
           <div className="flex flex-col [&>*:not(:first-child)]:pt-5 [&>*:not(:last-child)]:pb-5 divide-y divide-stone-950/10 dark:divide-white/10">
