@@ -73,6 +73,17 @@ export default async function Entry({ params }: PageProps) {
         {post.type === "article" && (
           <>
             <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+            {post.image && (
+              <div className="mb-8">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  width={800}
+                  height={400}
+                  className="rounded-lg object-cover w-full"
+                />
+              </div>
+            )}
             <div className="prose max-w-none">{content}</div>
           </>
         )}
@@ -119,6 +130,17 @@ export default async function Entry({ params }: PageProps) {
                 {post.title}
               </a>
             </h1>
+            {post.image && (
+              <div className="mb-8">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  width={800}
+                  height={400}
+                  className="rounded-lg object-cover w-full"
+                />
+              </div>
+            )}
             {note && <div className="prose max-w-none mt-8">{note}</div>}
           </>
         )}
@@ -127,6 +149,17 @@ export default async function Entry({ params }: PageProps) {
           <>
             {post.title && (
               <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+            )}
+            {post.image && (
+              <div className="mb-8">
+                <Image
+                  src={post.image}
+                  alt={post.title || "Note image"}
+                  width={800}
+                  height={400}
+                  className="rounded-lg object-cover w-full"
+                />
+              </div>
             )}
             <div className="prose max-w-none">{content}</div>
           </>

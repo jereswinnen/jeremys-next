@@ -240,6 +240,7 @@ export async function getPostBySlug(
           type: "article",
           title: data.title,
           body: content,
+          image: data.image,
         };
       case "book":
         return {
@@ -259,6 +260,7 @@ export async function getPostBySlug(
           title: data.title,
           url: data.url,
           note: content,
+          image: data.image,
         };
       case "note":
         return {
@@ -266,6 +268,7 @@ export async function getPostBySlug(
           type: "note",
           title: data.title,
           body: content,
+          image: data.image,
         };
       default:
         return null;
@@ -296,7 +299,7 @@ export async function getPostsByTopic(topic: string): Promise<Post[]> {
   return posts.filter((post) => post.topics?.includes(topic));
 }
 
-// Update validation functions to include topics
+// Update validation functions to include topics and image
 const validateArticle = (
   data: BaseFrontmatter
 ): data is BaseFrontmatter & {
@@ -304,12 +307,14 @@ const validateArticle = (
   theme?: string;
   title: string;
   topics?: string[];
+  image?: string;
 } => {
   return (
     typeof data.date === "string" &&
     (data.theme === undefined || typeof data.theme === "string") &&
     typeof data.title === "string" &&
-    (data.topics === undefined || Array.isArray(data.topics))
+    (data.topics === undefined || Array.isArray(data.topics)) &&
+    (data.image === undefined || typeof data.image === "string")
   );
 };
 
@@ -345,13 +350,15 @@ const validateLink = (
   title: string;
   url: string;
   topics?: string[];
+  image?: string;
 } => {
   return (
     typeof data.date === "string" &&
     (data.theme === undefined || typeof data.theme === "string") &&
     typeof data.title === "string" &&
     typeof data.url === "string" &&
-    (data.topics === undefined || Array.isArray(data.topics))
+    (data.topics === undefined || Array.isArray(data.topics)) &&
+    (data.image === undefined || typeof data.image === "string")
   );
 };
 
@@ -362,12 +369,14 @@ const validateNote = (
   theme?: string;
   title: string;
   topics?: string[];
+  image?: string;
 } => {
   return (
     typeof data.date === "string" &&
     (data.theme === undefined || typeof data.theme === "string") &&
     typeof data.title === "string" &&
-    (data.topics === undefined || Array.isArray(data.topics))
+    (data.topics === undefined || Array.isArray(data.topics)) &&
+    (data.image === undefined || typeof data.image === "string")
   );
 };
 

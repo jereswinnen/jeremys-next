@@ -10,6 +10,7 @@ export interface Article extends BasePost {
   type: "article";
   title: string;
   body: string;
+  image?: string;
 }
 
 export interface Book extends BasePost {
@@ -27,12 +28,14 @@ export interface Link extends BasePost {
   title: string;
   url: string;
   note?: string;
+  image?: string;
 }
 
 export interface Note extends BasePost {
   type: "note";
   title?: string;
   body: string;
+  image?: string;
 }
 
 export type Post = Article | Book | Link | Note;
