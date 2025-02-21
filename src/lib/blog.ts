@@ -19,6 +19,7 @@ type BaseFrontmatter = {
   cover?: string;
   rating?: number;
   url?: string;
+  topics?: string[];
   [key: string]: unknown;
 };
 
@@ -26,17 +27,28 @@ type BaseFrontmatter = {
 const castToBaseFrontmatter = (
   data: Record<string, unknown>
 ): BaseFrontmatter => {
-  return data as BaseFrontmatter;
+  // Ensure topics is properly handled
+  const topics = Array.isArray(data.topics)
+    ? data.topics
+    : typeof data.topics === "string"
+    ? [data.topics]
+    : undefined;
+
+  return {
+    ...data,
+    topics,
+  } as BaseFrontmatter;
 };
 
 // Helper function to get base properties
 const getBaseProps = (
-  data: { date: string; theme?: string },
+  data: { date: string; theme?: string; topics?: string[] },
   slug: string
 ) => ({
   slug,
   date: data.date,
-  theme: data.theme || "default", // Provide a default theme if not specified
+  theme: data.theme || "default",
+  topics: Array.isArray(data.topics) ? data.topics : [],
 });
 
 export async function getAllPosts(): Promise<Post[]> {
@@ -46,10 +58,7 @@ export async function getAllPosts(): Promise<Post[]> {
   // Read articles
   try {
     const articlesDir = path.join(contentDir, "articles");
-    console.log("Reading articles from:", articlesDir);
-
     const files = fs.readdirSync(articlesDir);
-    console.log("Found article files:", files);
 
     for (const file of files) {
       if (!file.endsWith(".mdx") && !file.endsWith(".md")) continue;
@@ -58,7 +67,6 @@ export async function getAllPosts(): Promise<Post[]> {
       const fileContents = fs.readFileSync(fullPath, "utf8");
       const { data: rawData, content } = matter(fileContents);
       const data = castToBaseFrontmatter(rawData);
-      console.log("Article frontmatter:", data);
 
       if (!validateArticle(data)) {
         console.warn(
@@ -78,7 +86,6 @@ export async function getAllPosts(): Promise<Post[]> {
       };
 
       posts.push(post);
-      console.log("Added article:", post);
     }
   } catch (error) {
     console.error("Error reading articles:", error);
@@ -194,7 +201,6 @@ export async function getAllPosts(): Promise<Post[]> {
     console.error("Error reading notes:", error);
   }
 
-  console.log("Total posts found:", posts.length);
   return posts.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
@@ -224,6 +230,7 @@ export async function getPostBySlug(
       slug,
       date: data.date,
       theme: data.theme,
+      topics: data.topics || [], // Add topics to base properties
     };
 
     switch (type) {
@@ -269,18 +276,40 @@ export async function getPostBySlug(
   }
 }
 
-// Specific validation for each post type with type guards
+// Get all unique topics from posts
+export async function getAllTopics(): Promise<string[]> {
+  const posts = await getAllPosts();
+  const topics = new Set<string>();
+
+  posts.forEach((post) => {
+    if (post.topics) {
+      post.topics.forEach((topic) => topics.add(topic));
+    }
+  });
+
+  return Array.from(topics).sort();
+}
+
+// Get all posts for a specific topic
+export async function getPostsByTopic(topic: string): Promise<Post[]> {
+  const posts = await getAllPosts();
+  return posts.filter((post) => post.topics?.includes(topic));
+}
+
+// Update validation functions to include topics
 const validateArticle = (
   data: BaseFrontmatter
 ): data is BaseFrontmatter & {
   date: string;
   theme?: string;
   title: string;
+  topics?: string[];
 } => {
   return (
     typeof data.date === "string" &&
     (data.theme === undefined || typeof data.theme === "string") &&
-    typeof data.title === "string"
+    typeof data.title === "string" &&
+    (data.topics === undefined || Array.isArray(data.topics))
   );
 };
 
@@ -294,6 +323,7 @@ const validateBook = (
   cover: string;
   rating: number;
   url?: string;
+  topics?: string[];
 } => {
   return (
     typeof data.date === "string" &&
@@ -302,7 +332,8 @@ const validateBook = (
     typeof data.author === "string" &&
     typeof data.cover === "string" &&
     typeof data.rating === "number" &&
-    (data.url === undefined || typeof data.url === "string")
+    (data.url === undefined || typeof data.url === "string") &&
+    (data.topics === undefined || Array.isArray(data.topics))
   );
 };
 
@@ -313,12 +344,14 @@ const validateLink = (
   theme?: string;
   title: string;
   url: string;
+  topics?: string[];
 } => {
   return (
     typeof data.date === "string" &&
     (data.theme === undefined || typeof data.theme === "string") &&
     typeof data.title === "string" &&
-    typeof data.url === "string"
+    typeof data.url === "string" &&
+    (data.topics === undefined || Array.isArray(data.topics))
   );
 };
 
@@ -328,10 +361,32 @@ const validateNote = (
   date: string;
   theme?: string;
   title: string;
+  topics?: string[];
 } => {
   return (
     typeof data.date === "string" &&
     (data.theme === undefined || typeof data.theme === "string") &&
-    typeof data.title === "string"
+    typeof data.title === "string" &&
+    (data.topics === undefined || Array.isArray(data.topics))
   );
 };
+
+// Get all topics with their post counts
+export async function getTopicsWithCounts(): Promise<
+  Array<{ topic: string; count: number }>
+> {
+  const posts = await getAllPosts();
+  const topicCounts = new Map<string, number>();
+
+  posts.forEach((post) => {
+    if (post.topics) {
+      post.topics.forEach((topic) => {
+        topicCounts.set(topic, (topicCounts.get(topic) || 0) + 1);
+      });
+    }
+  });
+
+  return Array.from(topicCounts.entries())
+    .map(([topic, count]) => ({ topic, count }))
+    .sort((a, b) => b.count - a.count || a.topic.localeCompare(b.topic));
+}

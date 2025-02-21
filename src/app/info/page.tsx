@@ -20,7 +20,7 @@ export default async function Info() {
     <>
       <section className="col-span-full grid grid-cols-subgrid !gap-y-6 md:!gap-y-12 min-h-[50vh] content-end">
         <header className="col-span-full md:!col-span-7">
-          <h2 className="text-[clamp(40px,6vw,100px)] -tracking-[0.045em] leading-[1.12em] indent-8 md:indent-32 text-balance">
+          <h2 className="font-bold text-[clamp(40px,6vw,100px)] -tracking-[0.045em] leading-[1.12em] indent-8 md:indent-32 text-balance">
             I design and build digital experiences for web and
             mobile&mdash;wherever you click or tap.
           </h2>

@@ -15,11 +15,12 @@ export default async function Blog() {
     <>
       <section className="col-span-full grid grid-cols-subgrid !gap-y-6 md:!gap-y-12 min-h-[15vh] content-end">
         <header className="col-span-full md:!col-span-7">
-          <h2 className="text-[clamp(40px,6vw,100px)] -tracking-[0.045em] leading-[1.12em] text-balance">
+          <h2 className="font-bold text-[clamp(40px,6vw,100px)] -tracking-[0.045em] leading-[1.12em] text-balance">
             Blog
           </h2>
         </header>
         <div className="col-span-full flex flex-wrap md:flex-nowrap items-center gap-4 md:gap-6">
+          <Button href="/blog/topics" label="Topics" />
           <Button href="https://jeremys.be/feed.xml" label="RSS" />
         </div>
       </section>

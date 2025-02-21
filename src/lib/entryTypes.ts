@@ -3,6 +3,7 @@ export type BasePost = {
   date: string;
   type: "article" | "book" | "link" | "note";
   theme?: string;
+  topics?: string[];
 };
 
 export interface Article extends BasePost {
