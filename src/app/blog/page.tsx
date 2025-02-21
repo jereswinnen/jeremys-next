@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts, getTopicsWithCounts } from "@/lib/blog";
 import EntryList from "@/components/blog/EntryList";
+import TopicList from "@/components/blog/TopicList";
 import Button from "@/components/Button";
 
 export const metadata: Metadata = {
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 
 export default async function Blog() {
   const posts = await getAllPosts();
-  console.log("Rendered posts:", posts);
+  const topics = await getTopicsWithCounts();
 
   return (
     <>
@@ -24,6 +25,7 @@ export default async function Blog() {
           <Button href="https://jeremys.be/feed.xml" label="RSS" />
         </div>
       </section>
+      <TopicList topics={topics} />
       <section className="col-span-full grid grid-cols-subgrid gap-y-6 md:gap-y-0 pt-6 border-t border-stone-950 dark:border-white/20">
         {posts.length === 0 ? (
           <p>No posts found</p>
