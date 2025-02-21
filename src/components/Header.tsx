@@ -26,6 +26,11 @@ const Header: FC<HeaderProps> = ({ className = "" }) => {
   const currentPath = usePathname();
   const { copyEmail, copiedEmail } = useCopyEmail();
 
+  const isActivePath = (path: string) => {
+    if (path === "/") return currentPath === path;
+    return currentPath.startsWith(path);
+  };
+
   const handleEmailClick = (
     e:
       | React.MouseEvent<HTMLAnchorElement>
@@ -64,7 +69,7 @@ const Header: FC<HeaderProps> = ({ className = "" }) => {
                 <Link
                   href={path}
                   className={`flex pl-3 pt-4 opacity-70 transition-all duration-500 ease-circ hover:opacity-100 ${
-                    currentPath === path ? "font-semibold !opacity-100" : ""
+                    isActivePath(path) ? "font-semibold !opacity-100" : ""
                   }`}
                 >
                   {label}
@@ -74,7 +79,7 @@ const Header: FC<HeaderProps> = ({ className = "" }) => {
                 <span className="h-0 bg-stone-950 dark:bg-white transition-all duration-500 ease-circ group-hover:h-full" />
                 <span
                   className={`h-full bg-stone-950/20 dark:bg-white/20 ${
-                    currentPath === path ? "!bg-stone-950 dark:!bg-white" : ""
+                    isActivePath(path) ? "!bg-stone-950 dark:!bg-white" : ""
                   }`}
                 />
               </div>
