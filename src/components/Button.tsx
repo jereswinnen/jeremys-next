@@ -45,8 +45,8 @@ const Button: FC<ButtonProps> = ({
 
   return (
     <Component {...componentProps} className={baseClasses}>
-      <div className="relative z-10 cta-interaction group-hover:text-stone-900 dark:group-hover:text-white">
-        <span className="cta-interaction group-hover:text-white dark:group-hover:text-stone-900">
+      <div className="relative z-10 group-hover:text-stone-900 dark:group-hover:text-white">
+        <span className="ease-circ group-hover:text-white dark:group-hover:text-stone-900">
           {copiedEmail === href && copyEmail ? "Copied!" : label}
         </span>
         <svg
