@@ -16,7 +16,7 @@ export default async function Blog() {
     <>
       <section className="col-span-full grid grid-cols-subgrid !gap-y-6 md:!gap-y-12 min-h-[15vh] content-end">
         <header className="col-span-full md:!col-span-7">
-          <h2 className="font-bold text-[clamp(40px,6vw,100px)] -tracking-[0.045em] leading-[1.12em] text-balance">
+          <h2 className="font-bold text-[clamp(40px,6vw,100px)] font-stretch-90% leading-[1.12em] text-balance">
             Blog
           </h2>
         </header>

@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 const bricolageGrotesque = Bricolage_Grotesque({
   variable: "--font-bricolage-grotesque",
   subsets: ["latin"],
+  axes: ["wdth", "opsz"],
 });
 
 export const metadata: Metadata = {

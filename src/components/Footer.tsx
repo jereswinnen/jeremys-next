@@ -94,7 +94,7 @@ const Footer: FC<FooterProps> = ({ className = "" }) => {
       <div className="col-span-full grid grid-cols-subgrid place-content-center">
         <Button
           data-copyEmail
-          className="col-span-full place-self-center w-fit h-fit -tracking-[0.045em] !px-[6vw] !py-[1.5vw] md:!py-[1.5vw] !text-[8vw] !normal-case !border-[0.5vw] md:!border-[0.2vw]"
+          className="col-span-full place-self-center w-fit h-fit font-semibold font-stretch-90% !px-[5vw] !py-[1.5vw] md:!py-[1.5vw] !text-[10vw] md:!text-[8vw] !normal-case !border-[0.6vw] md:!border-[0.25vw]"
           href="hey@jeremys.be"
           label="hey@jeremys.be"
         />
