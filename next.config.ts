@@ -3,10 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
-      {
-        hostname: "images-na.ssl-images-amazon.com",
-      },
-    ],
+      "images-na.ssl-images-amazon.com",
+      "images.unsplash.com",
+    ].map((hostname) => ({ hostname })),
   },
   serverExternalPackages: ["gray-matter"],
   webpack: (config, { isServer }) => {

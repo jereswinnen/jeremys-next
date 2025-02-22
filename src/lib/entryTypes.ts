@@ -1,8 +1,9 @@
 export type BasePost = {
   slug: string;
-  date: string;
-  type: "article" | "book" | "link" | "note";
+  featured?: boolean;
   theme?: string;
+  type: "article" | "book" | "link" | "note";
+  date: string;
   topics?: string[];
 };
 

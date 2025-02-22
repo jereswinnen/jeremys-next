@@ -42,13 +42,14 @@ const castToBaseFrontmatter = (
 
 // Helper function to get base properties
 const getBaseProps = (
-  data: { date: string; theme?: string; topics?: string[] },
+  data: { date: string; theme?: string; topics?: string[]; featured?: boolean },
   slug: string
 ) => ({
   slug,
   date: data.date,
   theme: data.theme || "default",
   topics: Array.isArray(data.topics) ? data.topics : [],
+  featured: data.featured || false,
 });
 
 export async function getAllPosts(): Promise<Post[]> {
@@ -83,6 +84,7 @@ export async function getAllPosts(): Promise<Post[]> {
         type: "article",
         title: data.title,
         body: content,
+        image: data.image,
       };
 
       posts.push(post);
@@ -159,6 +161,7 @@ export async function getAllPosts(): Promise<Post[]> {
         title: data.title,
         url: data.url,
         note: content,
+        image: data.image,
       };
       posts.push(post);
     }
@@ -194,6 +197,7 @@ export async function getAllPosts(): Promise<Post[]> {
         type: "note",
         title: data.title,
         body: content,
+        image: data.image,
       };
       posts.push(post);
     }
@@ -303,9 +307,10 @@ export async function getPostsByTopic(topic: string): Promise<Post[]> {
 const validateArticle = (
   data: BaseFrontmatter
 ): data is BaseFrontmatter & {
-  date: string;
+  featured?: boolean;
   theme?: string;
   title: string;
+  date: string;
   topics?: string[];
   image?: string;
 } => {
@@ -314,16 +319,18 @@ const validateArticle = (
     (data.theme === undefined || typeof data.theme === "string") &&
     typeof data.title === "string" &&
     (data.topics === undefined || Array.isArray(data.topics)) &&
-    (data.image === undefined || typeof data.image === "string")
+    (data.image === undefined || typeof data.image === "string") &&
+    (data.featured === undefined || typeof data.featured === "boolean")
   );
 };
 
 const validateBook = (
   data: BaseFrontmatter
 ): data is BaseFrontmatter & {
-  date: string;
+  featured?: boolean;
   theme?: string;
   title: string;
+  date: string;
   author: string;
   cover: string;
   rating: number;
@@ -338,16 +345,18 @@ const validateBook = (
     typeof data.cover === "string" &&
     typeof data.rating === "number" &&
     (data.url === undefined || typeof data.url === "string") &&
-    (data.topics === undefined || Array.isArray(data.topics))
+    (data.topics === undefined || Array.isArray(data.topics)) &&
+    (data.featured === undefined || typeof data.featured === "boolean")
   );
 };
 
 const validateLink = (
   data: BaseFrontmatter
 ): data is BaseFrontmatter & {
-  date: string;
+  featured?: boolean;
   theme?: string;
   title: string;
+  date: string;
   url: string;
   topics?: string[];
   image?: string;
@@ -358,16 +367,18 @@ const validateLink = (
     typeof data.title === "string" &&
     typeof data.url === "string" &&
     (data.topics === undefined || Array.isArray(data.topics)) &&
-    (data.image === undefined || typeof data.image === "string")
+    (data.image === undefined || typeof data.image === "string") &&
+    (data.featured === undefined || typeof data.featured === "boolean")
   );
 };
 
 const validateNote = (
   data: BaseFrontmatter
 ): data is BaseFrontmatter & {
-  date: string;
+  featured?: boolean;
   theme?: string;
   title: string;
+  date: string;
   topics?: string[];
   image?: string;
 } => {
@@ -376,7 +387,8 @@ const validateNote = (
     (data.theme === undefined || typeof data.theme === "string") &&
     typeof data.title === "string" &&
     (data.topics === undefined || Array.isArray(data.topics)) &&
-    (data.image === undefined || typeof data.image === "string")
+    (data.image === undefined || typeof data.image === "string") &&
+    (data.featured === undefined || typeof data.featured === "boolean")
   );
 };
 

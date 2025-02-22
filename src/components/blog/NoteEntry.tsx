@@ -1,15 +1,20 @@
 import React from "react";
 import { Link } from "next-view-transitions";
 import { Note } from "@/lib/entryTypes";
+import Image from "next/image";
 
 interface NoteEntryProps {
   post: Note;
+  isFeatured?: boolean;
 }
 
-export default function NoteEntry({ post }: NoteEntryProps) {
+export default function NoteEntry({
+  post,
+  isFeatured = false,
+}: NoteEntryProps) {
   return (
     <>
-      <section className="flex justify-end">
+      <section className="flex">
         <Link
           href={`/blog/notes/${post.slug}`}
           className="text-sm opacity-70 hover:opacity-100"
@@ -23,23 +28,36 @@ export default function NoteEntry({ post }: NoteEntryProps) {
           </time>
         </Link>
       </section>
-      {
-        <section className="flex flex-col">
-          {post.title && (
-            <header>
-              <h3>
-                <Link
-                  href={`/blog/notes/${post.slug}`}
-                  className="text-base font-semibold hover:underline"
-                >
-                  {post.title}
-                </Link>
-              </h3>
-            </header>
-          )}
-          <div className="text-balance">{post.body}</div>
-        </section>
-      }
+      <section className="flex flex-col gap-4">
+        {post.title && (
+          <header>
+            <h3>
+              <Link
+                href={`/blog/notes/${post.slug}`}
+                className={`${
+                  isFeatured ? "text-xl" : "text-base"
+                } font-semibold hover:underline`}
+              >
+                {post.title}
+              </Link>
+            </h3>
+          </header>
+        )}
+        {isFeatured && post.image && (
+          <div className="w-full">
+            <Image
+              src={post.image}
+              alt={post.title || "Note image"}
+              width={400}
+              height={200}
+              className="rounded-lg object-cover w-full"
+            />
+          </div>
+        )}
+        <div className={`text-balance ${isFeatured ? "text-lg" : ""}`}>
+          {post.body}
+        </div>
+      </section>
     </>
   );
 }
