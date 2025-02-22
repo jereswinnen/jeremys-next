@@ -36,7 +36,7 @@ body {
     transform: translateY(0) rotate(0deg);
   }
   to {
-    opacity: 0.7;
+    opacity: 0.4;
     filter: blur(2px);
     transform: translateY(-30%) rotate(-3deg);
   }
