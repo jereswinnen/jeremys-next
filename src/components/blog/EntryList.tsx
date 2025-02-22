@@ -78,18 +78,20 @@ export default function EntryList({ posts }: EntryListProps) {
         );
 
         return (
-          <section key={date} className="col-span-full gap-8">
-            <h2 className="text-2xl">
-              <time dateTime={new Date(date).toISOString()}>{date}</time>
-            </h2>
-            <div className="grid grid-cols-[1fr_2fr] gap-6">
+          <section
+            key={date}
+            className="col-span-full grid grid-cols-[1fr_2fr] gap-8"
+          >
+            <div className="col-span-full md:!col-start-2">
+              <h2 className="text-2xl">
+                <time dateTime={new Date(date).toISOString()}>{date}</time>
+              </h2>
+            </div>
+            <div className="col-span-full grid grid-cols-subgrid gap-6">
               {featuredPosts.length > 0 && (
-                <div className="col-span-full md:!col-span-1 flex flex-col gap-6">
+                <div className="col-span-full md:!col-span-1 flex flex-col gap-5">
                   {featuredPosts.map((post) => (
-                    <article
-                      key={post.slug}
-                      className="bg-amber-400 p-4 rounded-lg"
-                    >
+                    <article key={post.slug} className="flex flex-col gap-4">
                       {renderPost(post, true)}
                     </article>
                   ))}
