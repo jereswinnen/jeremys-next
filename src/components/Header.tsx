@@ -17,7 +17,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { path: "/", label: "Work" },
   { path: "/info", label: "Info" },
-  // { path: "/blog", label: "Blog" },
+  { path: "/blog", label: "Blog" },
   // { path: "/contact", label: "Contact" },
   { isCopyable: true, path: "hey@jeremys.be", label: "hey@jeremys.be" },
 ];
@@ -43,11 +43,11 @@ const Header: FC<HeaderProps> = ({ className = "" }) => {
 
   return (
     <header
-      className={`grid grid-cols-subgrid gap-y-0 z-[500] text-sm ${className}`}
+      className={`grid grid-cols-subgrid gap-y-0 z-[500] text-sm font-stretch-90% ${className}`}
     >
       <Link
         href="/"
-        className="col-span-1 md:!col-span-2 pt-4 font-semibold uppercase tracking-wide"
+        className="col-span-1 md:!col-span-2 pt-4 font-semibold uppercase"
       >
         Jeremys
       </Link>
