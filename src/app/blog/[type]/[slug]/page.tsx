@@ -1,9 +1,9 @@
-import { notFound } from "next/navigation";
-import { getPostBySlug } from "@/lib/blog";
+import { Metadata } from "next";
 import { compileMDX } from "next-mdx-remote/rsc";
 import Image from "next/image";
-import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import ThemeProvider from "@/hooks/ThemeProvider";
+import { getPostBySlug } from "@/lib/blog";
 
 interface PageProps {
   params: Promise<{
