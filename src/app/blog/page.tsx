@@ -33,7 +33,14 @@ export default async function Blog() {
             <EntryList posts={posts} />
           )}
         </section>
-        <TopicList className="col-span-full md:!col-span-2" topics={topics} />
+        <aside className="col-span-full md:!col-span-2 flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
+            <h3 className="text-sm font-medium font-stretch-90% uppercase opacity-50">
+              Stay updated
+            </h3>
+          </div>
+          <TopicList topics={topics} />
+        </aside>
       </section>
     </>
   );

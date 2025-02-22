@@ -82,12 +82,9 @@ export default function EntryList({ posts }: EntryListProps) {
             <h2 className="text-2xl">
               <time dateTime={new Date(date).toISOString()}>{date}</time>
             </h2>
-            <div
-              id="postsWrapper"
-              className="grid grid-cols-1 lg:grid-cols-2 gap-6"
-            >
+            <div className="grid grid-cols-[1fr_2fr] gap-6">
               {featuredPosts.length > 0 && (
-                <div className="flex flex-col gap-6">
+                <div className="col-span-full md:!col-span-1 flex flex-col gap-6">
                   {featuredPosts.map((post) => (
                     <article
                       key={post.slug}
@@ -98,7 +95,7 @@ export default function EntryList({ posts }: EntryListProps) {
                   ))}
                 </div>
               )}
-              <div className="flex flex-col [&>*:not(:first-child)]:pt-5 [&>*:not(:last-child)]:pb-5 divide-y divide-stone-950/10 dark:divide-white/10">
+              <div className="col-span-full md:!col-start-2 flex flex-col [&>*:not(:first-child)]:pt-5 [&>*:not(:last-child)]:pb-5 divide-y divide-stone-950/10 dark:divide-white/10">
                 {regularPosts.map((post) => (
                   <article key={post.slug} className="flex flex-col gap-4">
                     {renderPost(post)}

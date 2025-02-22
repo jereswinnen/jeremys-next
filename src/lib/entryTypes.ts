@@ -18,6 +18,7 @@ export interface Book extends BasePost {
   type: "book";
   title: string;
   author: string;
+  year?: number;
   cover: string;
   rating: number;
   url?: string;

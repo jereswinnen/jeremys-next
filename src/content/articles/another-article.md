@@ -1,5 +1,4 @@
 ---
-featured: true
 theme: t-forest
 title: Another regular MD Artisscle
 date: "2025-02-16T10:00:00Z"

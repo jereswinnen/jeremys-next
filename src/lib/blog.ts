@@ -12,14 +12,17 @@ const getContentDirectory = () => {
 
 // Define a type for the base frontmatter properties
 type BaseFrontmatter = {
-  date: string;
   theme?: string;
   title?: string;
+  date: string;
   author?: string;
+  year?: number;
   cover?: string;
   rating?: number;
   url?: string;
   topics?: string[];
+  featured?: boolean;
+  image?: string;
   [key: string]: unknown;
 };
 
@@ -42,14 +45,14 @@ const castToBaseFrontmatter = (
 
 // Helper function to get base properties
 const getBaseProps = (
-  data: { date: string; theme?: string; topics?: string[]; featured?: boolean },
+  data: { featured?: boolean; theme?: string; date: string; topics?: string[] },
   slug: string
 ) => ({
   slug,
-  date: data.date,
-  theme: data.theme || "default",
-  topics: Array.isArray(data.topics) ? data.topics : [],
   featured: data.featured || false,
+  theme: data.theme || "default",
+  date: data.date,
+  topics: Array.isArray(data.topics) ? data.topics : [],
 });
 
 export async function getAllPosts(): Promise<Post[]> {
@@ -121,6 +124,7 @@ export async function getAllPosts(): Promise<Post[]> {
         type: "book",
         title: data.title,
         author: data.author,
+        year: data.year,
         cover: data.cover,
         rating: data.rating,
         url: data.url,
@@ -232,8 +236,8 @@ export async function getPostBySlug(
     // Base properties that all post types share
     const baseProps = {
       slug,
-      date: data.date,
       theme: data.theme,
+      date: data.date,
       topics: data.topics || [], // Add topics to base properties
     };
 
@@ -252,6 +256,7 @@ export async function getPostBySlug(
           type: "book",
           title: data.title,
           author: data.author,
+          year: data.year,
           cover: data.cover,
           rating: data.rating,
           url: data.url,
@@ -332,6 +337,7 @@ const validateBook = (
   title: string;
   date: string;
   author: string;
+  year?: number;
   cover: string;
   rating: number;
   url?: string;
@@ -346,7 +352,8 @@ const validateBook = (
     typeof data.rating === "number" &&
     (data.url === undefined || typeof data.url === "string") &&
     (data.topics === undefined || Array.isArray(data.topics)) &&
-    (data.featured === undefined || typeof data.featured === "boolean")
+    (data.featured === undefined || typeof data.featured === "boolean") &&
+    (data.year === undefined || typeof data.year === "number")
   );
 };
 

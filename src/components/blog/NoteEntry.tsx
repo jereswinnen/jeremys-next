@@ -1,7 +1,7 @@
 import React from "react";
+import Image from "next/image";
 import { Link } from "next-view-transitions";
 import { Note } from "@/lib/entryTypes";
-import Image from "next/image";
 
 interface NoteEntryProps {
   post: Note;
