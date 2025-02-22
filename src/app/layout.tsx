@@ -41,19 +41,21 @@ export default function RootLayout({
 }>) {
   return (
     <ViewTransitions>
-      <html lang="en" className="scroll-smooth">
+      <html lang="en" className="scroll-smooth bg-black">
         <body
-          className={`${bricolageGrotesque.variable} o-container o-grid !gap-y-0 text-stone-900 dark:text-white bg-white dark:bg-stone-950 antialiased selection:bg-ocean-light selection:text-ocean-dark dark:selection:bg-ocean-dark dark:selection:text-ocean-light`}
+          className={`${bricolageGrotesque.variable} o-grid !gap-y-0 text-stone-900 dark:text-white antialiased selection:bg-ocean-light selection:text-ocean-dark dark:selection:bg-ocean-dark dark:selection:text-ocean-light`}
         >
           <Analytics />
           <SiteReveal />
           <LenisProvider />
           <AnimationProvider>
-            <Header className="col-span-full md:sticky md:top-0" />
-            <main className="col-span-full grid grid-cols-subgrid gap-y-[calc(var(--u-grid-gap)*1.25)]">
-              {children}
-            </main>
-            <Footer className="col-span-full" />
+            <section className="px-container-sm md:px-container-md col-span-full grid grid-cols-subgrid gap-y-[calc(var(--u-grid-gap)*1.25)] bg-white dark:bg-stone-950">
+              <Header className="col-span-full md:sticky md:top-0" />
+              <main className="col-span-full grid grid-cols-subgrid gap-y-[calc(var(--u-grid-gap)*1.25)]">
+                {children}
+              </main>
+              <Footer className="col-span-full" />
+            </section>
           </AnimationProvider>
         </body>
       </html>
