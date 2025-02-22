@@ -5,22 +5,24 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     topic: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const topic = decodeURIComponent(params.topic);
+  const resolvedParams = await params;
+  const topic = decodeURIComponent(resolvedParams.topic);
   return {
     title: `${topic} - Topics - Jeremy Swinnen`,
   };
 }
 
 export default async function Topic({ params }: PageProps) {
-  const topic = decodeURIComponent(params.topic);
+  const resolvedParams = await params;
+  const topic = decodeURIComponent(resolvedParams.topic);
   const posts = await getPostsByTopic(topic);
 
   if (posts.length === 0) {
