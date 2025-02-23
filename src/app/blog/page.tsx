@@ -33,7 +33,7 @@ export default async function Blog() {
         </header>
       </section>
       <section className="col-span-full grid grid-cols-subgrid">
-        <section className="col-span-full md:!col-start-2 md:!col-span-4 grid grid-cols-subgrid gap-y-6 md:gap-y-0 t-6 bordr-t border-stone-950 dark:border-white/20">
+        <section className="col-span-full md:!col-start-2 md:!col-span-4 grid grid-cols-subgrid gap-y-6 md:gap-y-0 t-6 boder-t border-stone-950 dark:border-white/20">
           {posts.length === 0 ? (
             <p>No posts found</p>
           ) : (
