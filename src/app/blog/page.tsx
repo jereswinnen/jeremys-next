@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { getAllPosts, getTopicsWithCounts } from "@/lib/blog";
 import blogroll from "@/content/data/blogroll.json";
 import EntryList from "@/components/blog/EntryList";
@@ -36,7 +37,9 @@ export default async function Blog() {
           {posts.length === 0 ? (
             <p>No posts found</p>
           ) : (
-            <EntryList posts={posts} />
+            <Suspense fallback={<div>Loading posts...</div>}>
+              <EntryList posts={posts} />
+            </Suspense>
           )}
         </section>
         <aside className="col-span-full md:!col-span-2 flex flex-col gap-8">

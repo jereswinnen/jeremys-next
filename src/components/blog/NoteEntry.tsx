@@ -2,16 +2,19 @@ import React from "react";
 import Image from "next/image";
 import { Link } from "next-view-transitions";
 import { Note } from "@/lib/entryTypes";
+import { compileMdx } from "@/lib/compileMdx";
 
 interface NoteEntryProps {
   post: Note;
   isFeatured?: boolean;
 }
 
-export default function NoteEntry({
+export default async function NoteEntry({
   post,
   isFeatured = false,
 }: NoteEntryProps) {
+  const compiledNote = await compileMdx(post.body);
+
   if (isFeatured) {
     return (
       <>
@@ -58,7 +61,7 @@ export default function NoteEntry({
                   </h3>
                 </header>
               )}
-              <div className="text-balance">{post.body}</div>
+              <div className="text-balance">{compiledNote}</div>
             </div>
           </div>
         </Link>
@@ -93,7 +96,7 @@ export default function NoteEntry({
             </h3>
           </header>
         )}
-        <div className="text-balance">{post.body}</div>
+        <div className="text-balance">{compiledNote}</div>
       </section>
     </>
   );

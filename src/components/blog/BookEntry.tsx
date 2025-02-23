@@ -2,16 +2,19 @@ import React from "react";
 import Image from "next/image";
 import { Link } from "next-view-transitions";
 import { Book } from "@/lib/entryTypes";
+import { compileMdx } from "@/lib/compileMdx";
 
 interface BookEntryProps {
   post: Book;
   isFeatured?: boolean;
 }
 
-export default function BookEntry({
+export default async function BookEntry({
   post,
   isFeatured = false,
 }: BookEntryProps) {
+  const compiledNote = post.note ? await compileMdx(post.note) : null;
+
   return (
     <>
       <Link
@@ -49,7 +52,7 @@ export default function BookEntry({
             </div>
           )}
         </header>
-        {post.note && <div className="text-balance">{post.note}</div>}
+        {compiledNote && <div className="text-balance">{compiledNote}</div>}
       </section>
     </>
   );

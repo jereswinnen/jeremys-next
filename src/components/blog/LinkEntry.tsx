@@ -2,16 +2,19 @@ import React from "react";
 import { Link } from "next-view-transitions";
 import { Link as LinkType } from "@/lib/entryTypes";
 import Image from "next/image";
+import { compileMdx } from "@/lib/compileMdx";
 
 interface LinkEntryProps {
   post: LinkType;
   isFeatured?: boolean;
 }
 
-export default function LinkEntry({
+export default async function LinkEntry({
   post,
   isFeatured = false,
 }: LinkEntryProps) {
+  const compiledNote = post.note ? await compileMdx(post.note) : null;
+
   if (isFeatured) {
     return (
       <>
@@ -55,10 +58,10 @@ export default function LinkEntry({
                 </em>
               </a>
             </header>
-            {post.note && (
+            {compiledNote && (
               <div className="flex gap-3">
-                <span className="w-[3px] flex-shrink-0 h-full bg-stone-950/20 rounded-full"></span>
-                <div className="text-balance">{post.note}</div>
+                <span className="flex-shrink-0 w-[3px] h-full bg-stone-950/20 rounded-full"></span>
+                <div className="text-balance">{compiledNote}</div>
               </div>
             )}
           </div>
@@ -95,10 +98,10 @@ export default function LinkEntry({
             </em>
           </a>
         </header>
-        {post.note && (
+        {compiledNote && (
           <div className="flex gap-3">
-            <span className="w-[3px] h-full bg-stone-950/20 rounded-full"></span>
-            <div className="text-balance">{post.note}</div>
+            <span className="flex-shrink-0 w-[3px] h-full bg-stone-950/20 rounded-full"></span>
+            <div className="text-balance">{compiledNote}</div>
           </div>
         )}
       </section>
