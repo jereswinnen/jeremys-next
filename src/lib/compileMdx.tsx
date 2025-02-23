@@ -1,28 +1,30 @@
 import { cache } from "react";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
+import rehypeFigure from "rehype-figure";
+import type { MDXRemoteProps } from "next-mdx-remote/rsc";
 
-export const compileMdx = cache(async (content: string) => {
-  if (!content) return null;
+// Shared MDX configuration
+const mdxConfig: MDXRemoteProps["options"] = {
+  mdxOptions: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [[rehypeFigure, { className: "relative" }]],
+    format: "mdx",
+  },
+};
 
-  const { content: compiledContent } = await compileMDX({
-    source: content,
-  });
-
-  return compiledContent;
-});
-
-export async function remarkGfmConfig(source?: string) {
+export const compileMdx = cache(async (source?: string) => {
   if (!source) return null;
 
-  const { content } = await compileMDX({
-    source,
-    options: {
-      mdxOptions: {
-        remarkPlugins: [remarkGfm],
-      },
-    },
-  });
+  try {
+    const { content } = await compileMDX({
+      source,
+      options: mdxConfig,
+    });
 
-  return content;
-}
+    return content;
+  } catch (error) {
+    console.error("Error compiling MDX:", error);
+    return null;
+  }
+});

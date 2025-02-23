@@ -12,6 +12,8 @@ I’d been meaning to do this chain-letter-like [challenge][1], but found enough
 
 I’m slightly envious of those who can point to their very first blog post. My blog emerged from an area on the homepage of my previous site (cringingly called ""LloydyWeb"") that gave short, monthly updates. It only became more blog-like because the people I was following online were doing the same.
 
+![This is the alt tag of the second image.](https://images.unsplash.com/photo-1661103517104-9d118ccad126?q=80&w=4740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D "This should be the figcaption of the first image.")
+
 I moved my site to `paulrobertlloyd.com` in 2008, and the [Visit OpenAI](https://openai.com) outlined some early motivations:
 
 > My previous site had a very personal bias, yet in retrospect the most interesting posts were those not about my own life, but commentary and thoughts on topics that interested me in the news and the world around me. As I move to this new (and more grown-up sounding) domain, so I would like to spend more time writing about these subjects.
@@ -23,6 +25,8 @@ My second post was a write-up of my trip on the [California Zephyr][4], and it�
 ## What platform are you using to manage your blog and why did you choose it?
 
 Like many others, I use [Eleventy][9]. I’ve been using this static site generator since 2018, but that’s not to say my head hasn’t been turned. Eleventy is a remarkable piece of software, though I find it to be fiddly at times, undoubtedly the result of me using it to build a website that really should use a database in places.
+
+![This is the alt tag of the second image.](https://images.unsplash.com/photo-1677527697566-33034c16adb6?q=80&w=3868&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D "This should be the figcaption of the second image.")
 
 [I was considering moving to Lume][10]. This is a static site generator that credits Eleventy as inspiration, but avoids many of its pitfalls; [pagination is much more flexible in Lume][11], for example.
 
@@ -47,8 +51,6 @@ I dearly wish more applications would support [Micropub][18]. Funnily enough, iA
 Annoyance has always been my greatest motivator, and many posts have started out as a comment, a tweet or shorter note.
 
 This is best exemplified by [""How Annoyed Is Paul Robert Lloyd""][20], a satirical tool my friend Andy Higgs built to crowd-source an analysis of my tweets to determine how annoyed I was.
-
-![Screenshot of ‘How Annoyed Is Paul Robert Lloyd’.](../media/2025/053/a1/haiprl_screenshot.png "My annoyance has to escalate through to fatalities before writing a blog post.")
 
 Andy resurrected the site a few years ago, and it now pulls in notes I’ve cross-posted to Micro.blog. However, this tool was more a reflection on how Twitter encouraged pithy moans, with only the most enraging topics being allowed more thoughtful consideration in longer form.
 
