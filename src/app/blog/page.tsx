@@ -39,6 +39,11 @@ export default async function Blog() {
               Stay updated
             </h3>
           </div>
+          <div className="flex flex-col gap-4">
+            <h3 className="text-sm font-medium font-stretch-90% uppercase opacity-50">
+              Blogroll
+            </h3>
+          </div>
           <TopicList topics={topics} />
         </aside>
       </section>

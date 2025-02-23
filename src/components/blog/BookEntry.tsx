@@ -27,7 +27,7 @@ export default function BookEntry({
         </time>
       </Link>
       <section className="flex flex-col gap-3">
-        <header className="p-2 flex items-center gap-2 bg-stone-100 dark:bg-stone-900 rounded">
+        <header className="p-2 flex items-center gap-2 bg-stone-100 dark:bg-stone-900 rounded-md">
           <Image
             src={post.cover}
             alt={`${post.title} by ${post.author}`}
