@@ -1,9 +1,10 @@
 import { Metadata } from "next";
-import Image from "next/image";
-import { compileMDX } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
-import { getPostBySlug } from "@/lib/blog";
 import ThemeProvider from "@/hooks/ThemeProvider";
+import { getPostBySlug } from "@/lib/blog";
+import { remarkGfmConfig } from "@/lib/compileMdx";
+import { BookSummary } from "@/components/blog/BookSummary";
+import { LinkSummary } from "@/components/blog/LinkSummary";
 
 interface PageProps {
   params: Promise<{
@@ -25,17 +26,14 @@ export async function generateMetadata({
     return {};
   }
 
+  const title =
+    "title" in post
+      ? `${post.title} - Jeremy Swinnen`
+      : `Note - ${post.date} - Jeremy Swinnen`;
+
   return {
-    title:
-      "title" in post
-        ? `${post.title} - Jeremy Swinnen`
-        : `Note - ${post.date} - Jeremy Swinnen`,
-    openGraph: {
-      title:
-        "title" in post
-          ? `${post.title} - Jeremy Swinnen`
-          : `Note - ${post.date} - Jeremy Swinnen`,
-    },
+    title,
+    openGraph: { title },
   };
 }
 
@@ -49,122 +47,40 @@ export default async function Entry({ params }: PageProps) {
     notFound();
   }
 
-  let content;
-  if ("body" in post) {
-    const { content: compiledContent } = await compileMDX({
-      source: post.body || "",
-    });
-    content = compiledContent;
-  }
+  // Compile MDX content based on post type
+  const content = "body" in post ? await remarkGfmConfig(post.body) : null;
+  const note = "note" in post ? await remarkGfmConfig(post.note) : null;
 
-  let note;
-  if ("note" in post && post.note) {
-    const { content: compiledNote } = await compileMDX({
-      source: post.note,
-    });
-    note = compiledNote;
-  }
-
-  console.log("Post theme:", post.theme);
+  // Determine which content to show (either content or note)
+  const mainContent = content || note;
 
   return (
     <ThemeProvider theme={post.theme}>
-      <div className="max-w-4xl mx-auto py-8">
-        {post.type === "article" && (
-          <>
-            <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
-            {post.image && (
-              <div className="mb-8">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  width={800}
-                  height={400}
-                  className="rounded-lg object-cover w-full"
-                />
-              </div>
-            )}
-            <div className="prose max-w-none">{content}</div>
-          </>
-        )}
+      <article className="col-span-full grid grid-cols-subgrid !gap-y-6 md:!gap-y-12">
+        <header className="bg-lime-800 col-span-full min-h-[10vh] md:min-h-[30vh] content-center">
+          <h1 className="font-bold text-[clamp(40px,6vw,100px)] font-stretch-90% leading-[1.12em] indnt-8 md:indnt-32 text-balance">
+            {"title" in post ? post.title : `Note - ${post.date}`}
+          </h1>
+        </header>
 
-        {post.type === "book" && (
-          <>
-            <div className="flex gap-8 mb-8">
-              <Image
-                src={post.cover}
-                alt={post.title}
-                width={200}
-                height={300}
-                className="object-cover"
-              />
-              <div>
-                <h1 className="text-3xl font-bold">{post.title}</h1>
-                <p className="text-xl text-gray-600 mt-2">{post.author}</p>
-                <div className="mt-4">Rating: {post.rating}/5</div>
-                {post.url && (
-                  <a
-                    href={post.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline mt-4 block"
-                  >
-                    View on Goodreads
-                  </a>
-                )}
-              </div>
-            </div>
-            {note && <div className="prose max-w-none">{note}</div>}
-          </>
-        )}
+        <div className="col-span-full md:!col-start-4 md:!col-span-3 bg-amber-800">
+          {post.type === "book" && (
+            <BookSummary
+              cover={post.cover}
+              title={post.title}
+              author={post.author}
+              rating={post.rating}
+              url={post.url}
+            />
+          )}
 
-        {post.type === "link" && (
-          <>
-            <h1 className="text-3xl font-bold mb-4">
-              <a
-                href={post.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                {post.title}
-              </a>
-            </h1>
-            {post.image && (
-              <div className="mb-8">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  width={800}
-                  height={400}
-                  className="rounded-lg object-cover w-full"
-                />
-              </div>
-            )}
-            {note && <div className="prose max-w-none mt-8">{note}</div>}
-          </>
-        )}
+          {post.type === "link" && (
+            <LinkSummary title={post.title} url={post.url} />
+          )}
 
-        {post.type === "note" && (
-          <>
-            {post.title && (
-              <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
-            )}
-            {post.image && (
-              <div className="mb-8">
-                <Image
-                  src={post.image}
-                  alt={post.title || "Note image"}
-                  width={800}
-                  height={400}
-                  className="rounded-lg object-cover w-full"
-                />
-              </div>
-            )}
-            <div className="prose max-w-none">{content}</div>
-          </>
-        )}
-      </div>
+          {mainContent && <div>{mainContent}</div>}
+        </div>
+      </article>
     </ThemeProvider>
   );
 }
