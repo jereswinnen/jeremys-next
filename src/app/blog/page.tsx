@@ -25,9 +25,9 @@ export default async function Blog() {
 
   return (
     <>
-      <section className="col-span-full grid grid-cols-subgrid !gap-y-6 md:!gap-y-12 min-h-[30vh] content-end pb-6 border-b border-stone-950 dark:border-white/20">
-        <header className="col-span-full md:!col-span-7">
-          <h2 className="font-bold text-[clamp(40px,6vw,100px)] font-stretch-90% leading-[1.12em] text-balance">
+      <section className="col-span-full grid grid-cols-subgrid !gap-y-6 md:!gap-y-12 min-h-[10vh] md:min-h-[30vh] content-center">
+        <header className="col-span-full">
+          <h2 className="font-bold text-[20vw] md:text-[10vw] font-stretch-90% leading-[1.12em] text-center">
             Blog
           </h2>
         </header>
