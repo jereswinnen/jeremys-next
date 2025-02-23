@@ -76,11 +76,9 @@ export default function ArticleEntry({
           hour12: true,
         })}
       </time>
-      <section className="flex flex-col gap-3">
-        <h3 className="font-medium text-xl hover:underline">
-          <Link href={`/blog/articles/${post.slug}`}>{post.title}</Link>
-        </h3>
-      </section>
+      <h3 className="font-medium text-xl hover:underline">
+        <Link href={`/blog/articles/${post.slug}`}>{post.title}</Link>
+      </h3>
     </>
   );
 }

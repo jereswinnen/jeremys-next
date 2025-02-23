@@ -1,5 +1,4 @@
 ---
-featured: true
 theme: t-forest
 title: Building Year in Play for GamePal
 date: "2025-02-16T10:00:00Z"

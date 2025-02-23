@@ -15,10 +15,7 @@ export default function LinkEntry({
   if (isFeatured) {
     return (
       <>
-        <Link
-          className="group relative flex flex-col"
-          href={`/blog/links/${post.slug}`}
-        >
+        <div className="group relative flex flex-col">
           {post.image && (
             <Image
               src={post.image}
@@ -30,44 +27,42 @@ export default function LinkEntry({
           )}
           <div
             className={`${
-              post.image
-                ? "z-2 p-4 text-white backdrop-blur-lg transition-all duration-300 ease-circ bg-stone-950/0 group-hover:bg-stone-950/20"
-                : ""
+              post.image ? "z-2 p-4 backdrop-blur-lg" : ""
             } flex flex-col gap-3`}
           >
-            <time
-              dateTime={new Date(post.date).toISOString()}
+            <a
               className="text-sm font-stretch-90% uppercase opacity-50 hover:opacity-100"
+              href={`/blog/links/${post.slug}`}
             >
-              {new Date(post.date).toLocaleTimeString("en-US", {
-                hour: "numeric",
-                minute: "numeric",
-                hour12: true,
-              })}
-            </time>
-            <section className="flex flex-col gap-3">
-              <header className="w-fit p-2 bg-stone-950/10 rounded-md">
-                <a
-                  className="flex flex-col"
-                  href={post.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <h3 className="font-medium">{post.title}</h3>
-                  <em className="not-italic text-sm font-stretch-90% uppercase opacity-60">
-                    {post.url}
-                  </em>
-                </a>
-              </header>
-              {post.note && (
-                <div className="flex gap-3">
-                  <span className="w-[3px] flex-shrink-0 h-full bg-stone-950/20 rounded-full"></span>
-                  <div className="text-balance">{post.note}</div>
-                </div>
-              )}
-            </section>
+              <time dateTime={new Date(post.date).toISOString()}>
+                {new Date(post.date).toLocaleTimeString("en-US", {
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: true,
+                })}
+              </time>
+            </a>
+            <header className="w-fit">
+              <a
+                className="p-2 flex flex-col bg-stone-950/10 rounded-md hover:bg-stone-950/20"
+                href={post.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <h3 className="font-medium">{post.title}</h3>
+                <em className="not-italic text-sm font-stretch-90% uppercase opacity-60">
+                  {post.url}
+                </em>
+              </a>
+            </header>
+            {post.note && (
+              <div className="flex gap-3">
+                <span className="w-[3px] flex-shrink-0 h-full bg-stone-950/20 rounded-full"></span>
+                <div className="text-balance">{post.note}</div>
+              </div>
+            )}
           </div>
-        </Link>
+        </div>
       </>
     );
   }
@@ -87,9 +82,9 @@ export default function LinkEntry({
         </time>
       </Link>
       <section className="flex flex-col gap-3">
-        <header className="w-fit p-2 bg-stone-100 dark:bg-stone-900 rounded-md">
+        <header className="w-fit">
           <a
-            className="flex flex-col"
+            className="p-2 flex flex-col bg-stone-100 hover:bg-stone-200 dark:bg-stone-900 dark:hover:bg-stone-800 rounded-md"
             href={post.url}
             target="_blank"
             rel="noopener noreferrer"
