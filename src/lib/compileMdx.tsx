@@ -1,7 +1,7 @@
 import { cache } from "react";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
-// @ts-ignore
+// @ts-expect-error
 import rehypeFigure from "rehype-figure";
 import type { MDXRemoteProps } from "next-mdx-remote/rsc";
 
