@@ -1,4 +1,4 @@
 declare module "rehype-figure" {
-  const rehypeFigure: any;
+  const rehypeFigure: unknown;
   export default rehypeFigure;
 }

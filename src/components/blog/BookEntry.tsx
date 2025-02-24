@@ -11,8 +11,8 @@ interface BookEntryProps {
 
 export default async function BookEntry({
   post,
-  isFeatured = false,
-}: BookEntryProps) {
+}: //isFeatured = false,
+BookEntryProps) {
   const compiledNote = post.note ? await compileMdx(post.note) : null;
 
   return (
