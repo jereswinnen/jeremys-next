@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { Bricolage_Grotesque } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
-import LenisProvider from "@/hooks/LenisProvider";
+// import LenisProvider from "@/hooks/LenisProvider";
 import AnimationProvider from "@/hooks/AnimationProvider";
 import SiteReveal from "@/components/SiteReveal";
 import Header from "@/components/Header";
