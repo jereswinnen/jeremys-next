@@ -8,6 +8,7 @@ import AnimationProvider from "@/hooks/AnimationProvider";
 import SiteReveal from "@/components/SiteReveal";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ReactLenis from "lenis/react";
 
 const bricolageGrotesque = Bricolage_Grotesque({
   variable: "--font-bricolage-grotesque",
@@ -45,18 +46,20 @@ export default function RootLayout({
         <body
           className={`${bricolageGrotesque.variable} o-grid !gap-y-0 text-stone-900 dark:text-white antialiased selection:bg-ocean-light selection:text-ocean-dark dark:selection:bg-ocean-dark dark:selection:text-ocean-light`}
         >
-          <Analytics />
-          <SiteReveal />
-          <LenisProvider />
-          <AnimationProvider>
-            <section className="px-container-sm md:px-container-md col-span-full grid grid-cols-subgrid gap-y-[calc(var(--u-grid-gap)*1.25)] bg-white dark:bg-stone-950">
-              <Header className="col-span-full md:sticky md:top-0" />
-              <main className="col-span-full grid grid-cols-subgrid gap-y-[calc(var(--u-grid-gap)*1.25)]">
-                {children}
-              </main>
-              <Footer className="col-span-full" />
-            </section>
-          </AnimationProvider>
+          <ReactLenis root>
+            <Analytics />
+            <SiteReveal />
+            {/* <LenisProvider /> */}
+            <AnimationProvider>
+              <section className="px-container-sm md:px-container-md col-span-full grid grid-cols-subgrid gap-y-[calc(var(--u-grid-gap)*1.25)] bg-white dark:bg-stone-950">
+                <Header className="col-span-full md:sticky md:top-0" />
+                <main className="col-span-full grid grid-cols-subgrid gap-y-[calc(var(--u-grid-gap)*1.25)]">
+                  {children}
+                </main>
+                <Footer className="col-span-full" />
+              </section>
+            </AnimationProvider>
+          </ReactLenis>
         </body>
       </html>
     </ViewTransitions>
