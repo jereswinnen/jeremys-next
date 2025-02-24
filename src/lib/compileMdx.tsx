@@ -8,7 +8,7 @@ import type { MDXRemoteProps } from "next-mdx-remote/rsc";
 const mdxConfig: MDXRemoteProps["options"] = {
   mdxOptions: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [[rehypeFigure, { className: "relative" }]],
+    rehypePlugins: [[rehypeFigure, { className: "c-figure" }]],
     format: "mdx",
   },
 };

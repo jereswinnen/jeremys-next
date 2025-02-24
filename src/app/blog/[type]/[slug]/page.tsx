@@ -60,7 +60,7 @@ export default async function Entry({ params }: PageProps) {
           </h1>
         </header>
 
-        <div className="col-span-full md:!col-start-4 md:!col-span-3">
+        <div className="col-span-full grid grid-cols-subgrid">
           {post.type === "book" && (
             <BookSummary
               cover={post.cover}
@@ -74,9 +74,8 @@ export default async function Entry({ params }: PageProps) {
           {post.type === "link" && (
             <LinkSummary title={post.title} url={post.url} />
           )}
-
           {mainContent && (
-            <div className="[&>figure]:py-6 [&>figure]:bg-blue-800 [&>figure]:flex [&>figure]:gap-2 [&>h2]:py-2 [&>h2]:font-semibold [&>h2]:text-2xl [&_a]:underline [&_a]:underline-offset-2 [&_a]:text-sky-light">
+            <div className="col-span-full grid grid-cols-subgrid [&>*]:not-[figure]:md:!col-start-4 [&>*]:not-[figure]:md:!col-span-3 [&>h2]:py-2 [&>h2]:font-semibold [&>h2]:text-2xl [&_a]:underline [&_a]:underline-offset-2 [&_a]:text-sky-light">
               {mainContent}
             </div>
           )}

@@ -12,7 +12,7 @@ I’d been meaning to do this chain-letter-like [challenge][1], but found enough
 
 I’m slightly envious of those who can point to their very first blog post. My blog emerged from an area on the homepage of my previous site (cringingly called ""LloydyWeb"") that gave short, monthly updates. It only became more blog-like because the people I was following online were doing the same.
 
-![This is the alt tag of the second image.](https://images.unsplash.com/photo-1661103517104-9d118ccad126?q=80&w=4740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D "This should be the figcaption of the first image.")
+![This is the alt tag of the first image.](https://images.unsplash.com/photo-1661103517104-9d118ccad126?q=80&w=4740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D "This should be the figcaption of the first image.")
 
 I moved my site to `paulrobertlloyd.com` in 2008, and the [Visit OpenAI](https://openai.com) outlined some early motivations:
 
