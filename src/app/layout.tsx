@@ -1,4 +1,4 @@
-import "./globals.css";
+import "./globals.scss";
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { Bricolage_Grotesque } from "next/font/google";

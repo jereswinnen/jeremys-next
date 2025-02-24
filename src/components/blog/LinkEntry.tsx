@@ -100,7 +100,7 @@ export default async function LinkEntry({
         </header>
         {compiledNote && (
           <div className="flex gap-3">
-            <span className="flex-shrink-0 w-[3px] h-full bg-stone-950/20 rounded-full"></span>
+            <span className="flex-shrink-0 w-[3px] h-full bg-stone-300 dark:bg-stone-700 rounded-full"></span>
             <div className="text-balance">{compiledNote}</div>
           </div>
         )}

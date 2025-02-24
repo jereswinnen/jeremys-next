@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@use "tailwindcss";
 
 :root {
   --u-grid-columns: 2;
@@ -96,20 +96,34 @@ body {
   font-family: "Bricolage Grotesque", Arial, Helvetica, sans-serif;
 }
 
-p:not(:last-of-type) {
+h2 {
+  @apply py-2 font-semibold text-2xl;
+}
+
+p:not(:last-of-type),
+blockquote {
   margin-bottom: 1.25rem;
+}
+
+blockquote {
+  @apply relative py-1 flex items-center;
+}
+
+blockquote::before {
+  @apply absolute content-[''] block w-[3px] h-full bg-stone-300 dark:bg-stone-700 rounded-full;
+}
+
+blockquote p {
+  @apply pl-5;
 }
 
 figure.c-figure {
   @apply col-span-full md:!col-span-4 md:!col-start-3 py-8 bg-amber-100 grid grid-cols-[1fr_auto] items-end gap-x-1;
-  figcaption {
-    @apply m-0 flex items-end text-sm opacity-60 [writing-mode:vertical-lr];
-  }
 }
 
-// figure.c-figure figcaption {
-//   @apply m-0 flex items-end text-sm opacity-60 [writing-mode:vertical-lr];
-// }
+figure.c-figure figcaption {
+  @apply m-0 flex items-end text-sm opacity-60 [writing-mode:vertical-lr];
+}
 
 .o-grid {
   display: grid;
