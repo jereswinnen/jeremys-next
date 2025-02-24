@@ -1,4 +1,6 @@
+import { Plugin } from "unified";
+
 declare module "rehype-figure" {
-  const rehypeFigure: unknown;
+  const rehypeFigure: Plugin;
   export default rehypeFigure;
 }
